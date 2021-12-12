@@ -1,12 +1,64 @@
 package com.example.finalcapstone_nomapp.main.identity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import com.example.finalcapstone_nomapp.R
+import com.example.finalcapstone_nomapp.main.view.MainActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // get context
+        val email : EditText = findViewById(R.id.email_editText_login)
+        val password : EditText = findViewById(R.id.password_editText_login)
+        val loginButton : Button = findViewById(R.id.login_button)
+        val loginTextview : TextView = findViewById(R.id.new_here_textView)
+
+
+        // make the button clickable
+        loginButton.setOnClickListener {
+            val emil : String = email.text.toString()
+            val password : String = password.text.toString()
+
+
+
+            // make suer email&&password not empty
+            if (emil.isNotEmpty() && password.isNotEmpty()){
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(emil,password)
+
+                    .addOnCompleteListener(){
+                            task ->
+                        if (task.isSuccessful){
+                            val firebaseUser : FirebaseUser = task.result!!.user!!
+                            Toast.makeText(this,"User Registered Successfully", Toast.LENGTH_SHORT)
+                                .show()
+                            // Navigate to main Activity
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra("UserId", firebaseUser.uid)
+                            intent.putExtra("Email",firebaseUser.email)
+                            startActivity(intent)
+                            finish()
+                        }
+                        else{
+                            Toast.makeText(this,task.exception!!.message.toString(), Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+            }
+        }
+        // make the text clickable and navigate to sign up
+        loginTextview.setOnClickListener {
+            startActivity(Intent(this,SignUpActivity::class.java))
+            finish()
+        }
     }
 }
