@@ -9,6 +9,7 @@ import android.view.WindowManager
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.databinding.ActivitySplashBinding
+import com.example.finalcapstone_nomapp.main.identity.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -57,7 +58,7 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             }

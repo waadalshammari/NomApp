@@ -20,6 +20,9 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        // hide action bar
+        supportActionBar?.hide()
+
 
        // get context
         val fullName : EditText = findViewById(R.id.fullname_editText_register)
