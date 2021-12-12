@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "977249619532",
+    "project_id": "finalcapstone-nomapp",
+    "storage_bucket": "finalcapstone-nomapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977249619532:android:ca226026b5b10cf0abaee9",
+        "android_client_info": {
+          "package_name": "com.example.finalcapstone_nomapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977249619532-00as3qun1aboe8fccnva37qhrevpt4jc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqOA5aKGRUuptv7toTZ4oqeH-oa-M4Heg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977249619532-00as3qun1aboe8fccnva37qhrevpt4jc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
