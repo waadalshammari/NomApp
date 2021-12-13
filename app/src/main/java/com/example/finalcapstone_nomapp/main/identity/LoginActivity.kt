@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
                     }
             }
         }
-        // make the text clickable and navigate to sign up
+        // make the text clickable and navigate to sign up activity
         loginTextview.setOnClickListener {
             startActivity(Intent(this,SignUpActivity::class.java))
             finish()
