@@ -7,4 +7,6 @@
     <string name="login">Login</string>
     <string name="newhere">New Here? Register</string>
     <string name="signup">Sign Up</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
