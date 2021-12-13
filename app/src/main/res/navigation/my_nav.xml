@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.example.finalcapstone_nomapp.RecipesFragment"
-        android:label="fragment_recipes"
+        android:name="com.example.finalcapstone_nomapp.main.view.RecipesFragment"
+        android:label="Recipes"
         tools:layout="@layout/fragment_recipes" />
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.finalcapstone_nomapp.FavoriteFragment"
-        android:label="fragment_favorite"
+        android:name="com.example.finalcapstone_nomapp.main.view.FavoriteFragment"
+        android:label="Favorites"
         tools:layout="@layout/fragment_favorite" />
 </navigation>
