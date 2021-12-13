@@ -30,9 +30,9 @@ class LoginActivity : AppCompatActivity() {
 
         // make the button clickable
         loginButton.setOnClickListener {
+
             val emil : String = email.text.toString()
             val password : String = password.text.toString()
-
 
 
             // make suer email&&password not empty
@@ -56,6 +56,10 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this,task.exception!!.message.toString(), Toast.LENGTH_SHORT)
                                 .show()
                         }
+                    }
+                    // when add on complete fun doesn't complete for any reason >> error handling
+                    .addOnFailureListener{
+                        println(it.message)
                     }
             }
         }

@@ -61,6 +61,10 @@ class SignUpActivity : AppCompatActivity() {
                                 .show()
                         }
                     }
+                    // when add on complete fun doesn't complete for any reason >> error handling
+                    .addOnFailureListener{
+                        println(it.message)
+                    }
             }
         }
             // make the text clickable and navigate to login activity
