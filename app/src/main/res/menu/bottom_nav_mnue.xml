@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:id="recipesFragment"
+<item android:id="@+id/RecipesFragment"
     android:title="@string/recipes_fragment"
     android:icon="@drawable/ic_menu_book_24"/>
 
-    <item android:id="favoriteFragment"
+    <item android:id="@+id/FavoriteFragment"
         android:title="@string/favorite_fragment"
         android:icon="@drawable/ic_favorite_24"/>
 </menu>
