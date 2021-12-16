@@ -17,7 +17,6 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
 
         // for hiding action bar on the splash screen
         supportActionBar?.hide()
