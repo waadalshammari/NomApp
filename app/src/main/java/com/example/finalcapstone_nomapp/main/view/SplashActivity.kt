@@ -10,6 +10,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.databinding.ActivitySplashBinding
 import com.example.finalcapstone_nomapp.main.identity.LoginActivity
+import com.example.finalcapstone_nomapp.repository.ApiRepository
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,6 +18,8 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ApiRepository.init(this)
 
         // for hiding action bar on the splash screen
         supportActionBar?.hide()
@@ -35,6 +38,9 @@ class SplashActivity : AppCompatActivity() {
 
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        // set motion for splash
 
         binding.motionLayout.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(

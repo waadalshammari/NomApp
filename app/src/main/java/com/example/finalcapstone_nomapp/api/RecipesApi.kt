@@ -1,5 +1,6 @@
 package com.example.finalcapstone_nomapp.api
 
+import android.content.Context
 import com.example.finalcapstone_nomapp.model.FoodRecipe
 import retrofit2.Response
 import retrofit2.http.GET
