@@ -34,8 +34,8 @@ class RecipesViewModel : ViewModel() {
                 if (response.isSuccessful){
                     response.body()?.run {
                         Log.d(TAG,this.toString())
-                        // ask mohammed
-                        recipesLiveData.postValue(FoodRecipe)
+                        // ask mohammed >>>> right or wrong
+                        recipesLiveData.postValue(this)
                     }
                 }else{
                     Log.d(TAG,response.message())
