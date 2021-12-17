@@ -28,13 +28,13 @@ class RecipesViewModel : ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
           // use try and catch to handle http exceptions
-
+            // ask is it right or not ??
             try {
                 val response = apiRepo.getRecipes("String",true,true,"String")
                 if (response.isSuccessful){
                     response.body()?.run {
                         Log.d(TAG,this.toString())
-
+                        // ask mohammed
                         recipesLiveData.postValue(FoodRecipe)
                     }
                 }else{

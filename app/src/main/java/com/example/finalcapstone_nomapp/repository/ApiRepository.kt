@@ -19,7 +19,7 @@ class ApiRepository ( val context: Context) {
 
     private val retrofitApi = retrofitService.create(RecipesApi::class.java)
 
-
+    // (Queries : Map<String,string): Response<Food Recipes>{
     suspend fun getRecipes(diet: String, recipeInfo: Boolean, fillIngredients: Boolean, type: String) = retrofitApi.getRecipes(diet
         ,recipeInfo,fillIngredients,type)
 

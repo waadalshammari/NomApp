@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
             // make suer email&&password not empty
             if (emil.isNotEmpty() && password.isNotEmpty()){
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(emil,password)
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(emil,password)
 
                     .addOnCompleteListener(){
                             task ->
