@@ -20,8 +20,8 @@ class RecipesViewModel : ViewModel() {
     private val apiRepo = ApiRepository.get()
 
     // livedata
-    private val recipesLiveData = MutableLiveData<List<FoodRecipe>>()
-    private val recipesErrorLiveData = MutableLiveData<String>()
+    val recipesLiveData = MutableLiveData<List<FoodRecipe>>()
+    val recipesErrorLiveData = MutableLiveData<String>()
 
     fun callRecipes(){
      //coroutine in this scope will live as long the view model is alive.

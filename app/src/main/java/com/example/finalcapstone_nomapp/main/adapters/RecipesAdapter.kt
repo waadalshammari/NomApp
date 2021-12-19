@@ -4,6 +4,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.finalcapstone_nomapp.R
@@ -58,7 +60,15 @@ class RecipesAdapter(private val list: List<FoodRecipe>) :
 
     class RecipesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-
+        val recipesImageView: ImageView = itemView.findViewById(R.id.recipe_imageView)
+        val titleTextView: TextView = itemView.findViewById(R.id.title_textView)
+        val descriptionTextView: TextView = itemView.findViewById(R.id.description_textView)
+        val heartImageView: ImageView = itemView.findViewById(R.id.heart_imageView)
+        val heartTextView: TextView = itemView.findViewById(R.id.heart_textView)
+        val timeImageView: ImageView = itemView.findViewById(R.id.time_imageView)
+        val timeTextView: TextView = itemView.findViewById(R.id.time_textView)
+        val veganImageView: ImageView = itemView.findViewById(R.id.vigan_imageView)
+        val veganTextView : TextView = itemView.findViewById(R.id.vigan_textView)
 
     }
 
