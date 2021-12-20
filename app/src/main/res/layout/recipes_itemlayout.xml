@@ -49,7 +49,7 @@
                 android:maxLines="2"
                 android:text="TextView"
                 android:textColor="@color/darker"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.131"
@@ -89,8 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100"
-                android:textColor="@color/red"
                 android:textAlignment="center"
+                android:textColor="@color/red"
                 app:layout_constraintStart_toStartOf="@+id/description_textView"
                 app:layout_constraintTop_toBottomOf="@+id/heart_imageView" />
 
@@ -98,11 +98,11 @@
                 android:id="@+id/time_imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:tint="@color/yellow"
                 app:layout_constraintEnd_toEndOf="@+id/time_textView"
                 app:layout_constraintStart_toStartOf="@+id/time_textView"
                 app:layout_constraintTop_toTopOf="@+id/heart_imageView"
-                app:srcCompat="@drawable/ic_time_24" />
+                app:srcCompat="@drawable/ic_time_24"
+                app:tint="@color/yellow" />
 
             <TextView
                 android:id="@+id/time_textView"
@@ -110,16 +110,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text="100"
-                android:textColor="@color/yellow"
                 android:textAlignment="center"
+                android:textColor="@color/yellow"
                 app:layout_constraintStart_toEndOf="@+id/heart_textView"
                 app:layout_constraintTop_toBottomOf="@+id/time_imageView" />
 
             <ImageView
                 android:id="@+id/vigan_imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 app:layout_constraintEnd_toEndOf="@+id/vigan_textView"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/vigan_textView"
                 app:layout_constraintTop_toTopOf="@+id/time_imageView"
                 app:srcCompat="@drawable/ic_vigan_24" />
@@ -129,7 +130,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="100"
+                android:foregroundGravity="center"
+                android:text="Vegan"
                 android:textAlignment="center"
                 app:layout_constraintStart_toEndOf="@+id/time_textView"
                 app:layout_constraintTop_toBottomOf="@+id/vigan_imageView" />

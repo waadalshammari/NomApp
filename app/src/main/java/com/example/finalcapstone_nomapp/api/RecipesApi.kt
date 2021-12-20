@@ -8,16 +8,18 @@ import retrofit2.http.Query
 
 interface RecipesApi {
        // endpoint >> path
-    @GET("/recipes/complexSearch")
+    @GET("/recipes/complexSearch?apiKey=8eb098551f4a4ae3b551d3d397a7297c&addRecipeInformation=true")
     suspend fun getRecipes(
            @Query("diet") diet : String,
            @Query("recipe information") recipeInformation : Boolean,
            @Query("fillIngredients") fillIngredients : Boolean,
-           @Query("type") type:String,
-           @Query("number") number : Int = 1
+           @Query("type") type:String ,
+           @Query("number") number : Int = 50
 
-           ) : Response<List<FoodRecipe>>
+           ) : Response<FoodRecipe>
 }
+
+// :Response<FoodRecipe> not list cause it is not list >> result is the list
 // let us create something like hash map to add all our query once
 // QueryMap queries : Map<String,String>
 

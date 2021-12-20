@@ -1,5 +1,6 @@
 package com.example.finalcapstone_nomapp.main.adapters
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,19 +10,23 @@ import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.finalcapstone_nomapp.R
+import com.example.finalcapstone_nomapp.main.view.RecipesViewModel
 import com.example.finalcapstone_nomapp.model.FoodRecipe
-// right or i need to put val viewmodel : RecipesViewModel
-class RecipesAdapter(private val list: List<FoodRecipe>) :
+import com.example.finalcapstone_nomapp.model.Result
+import com.squareup.picasso.Picasso
+
+
+class RecipesAdapter() :
     RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() {
-
-
-    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FoodRecipe>(){
-        override fun areItemsTheSame(oldItem: FoodRecipe, newItem: FoodRecipe): Boolean {
-            // ask mohamed
-            return oldItem.results == newItem.results
+       // في الادابتر نحط model اللي نبي نستخدمها
+        // put result the list from FoodRecipes so we can use what inside it
+    // نحط  result لاننا نبي نستخدم اللي داخلها
+    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Result>(){
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: FoodRecipe, newItem: FoodRecipe): Boolean {
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem == newItem
         }
 
@@ -42,18 +47,38 @@ class RecipesAdapter(private val list: List<FoodRecipe>) :
                 false
             )
         )
+
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
 
         val item = differ.currentList[position]
+        // data from API for them >> الداتا اللي راح تجي من الاي بي تجي هنا وتستقبلها
+        // احط الاشياء اللي ابيها تستقبل الداتا
+        holder.titleTextView.text = item.title
+        holder.descriptionTextView.text = item.summary
+        holder.timeTextView.text = "${item.readyInMinutes}"
+        holder.heartTextView.text = "${item.aggregateLikes}"
+
+
+        //================================================================//
+        Picasso.get().load(item.image).into(holder.recipesImageView)
+        //=================================================================//
+        // vegetarian boolean >> if condition
+        if(item.vegetarian){
+            holder.veganImageView.setImageResource(R.drawable.vegan)
+            holder.veganTextView.setTextColor(R.color.green)
+        }
+
+
 
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-    fun submitList(list: List<FoodRecipe>){
+    fun submitList(list: List<Result>){
         differ.submitList(list)
     }
 
@@ -69,6 +94,10 @@ class RecipesAdapter(private val list: List<FoodRecipe>) :
         val timeTextView: TextView = itemView.findViewById(R.id.time_textView)
         val veganImageView: ImageView = itemView.findViewById(R.id.vigan_imageView)
         val veganTextView : TextView = itemView.findViewById(R.id.vigan_textView)
+
+
+
+
 
     }
 

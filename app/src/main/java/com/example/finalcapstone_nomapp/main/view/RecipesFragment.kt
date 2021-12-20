@@ -27,25 +27,24 @@ class RecipesFragment : Fragment() {
         binding = FragmentRecipesBinding.inflate(inflater,container,false)
         return binding.root
 
-//        val view = inflater.inflate(R.layout.fragment_recipes, container, false)
-//
-//        // for shimmer
-//          view.recycler_view.showShimmer()
-//        return view
+     //showShimmerEffect()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recipesAdapter = RecipesAdapter(recipesViewModel)
+        recipesAdapter = RecipesAdapter()
         binding.recyclerView.adapter = recipesAdapter
 
+       // showShimmerEffect()
+
         observers()
+        recipesViewModel.callRecipes()
+
     }
 
     fun observers(){
         recipesViewModel.recipesLiveData.observe(viewLifecycleOwner,{
-
             recipesAdapter.submitList(it)
 
         })
@@ -57,7 +56,15 @@ class RecipesFragment : Fragment() {
             }
 
         })
+
     }
+//
+//    private fun showShimmerEffect(){
+//        binding.recyclerView.showShimmer()
+//    }
+//    private fun hideShimmerEffect(){
+//        binding.recyclerView.hideShimmer()
+//    }
 
 
 }
