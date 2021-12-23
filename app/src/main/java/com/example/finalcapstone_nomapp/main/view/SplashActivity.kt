@@ -67,7 +67,6 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-
             override fun onTransitionTrigger(
                 motionLayout: MotionLayout?,
                 triggerId: Int,

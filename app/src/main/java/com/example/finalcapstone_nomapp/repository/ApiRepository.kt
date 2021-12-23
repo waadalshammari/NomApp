@@ -23,6 +23,7 @@ class ApiRepository ( val context: Context) {
     suspend fun getRecipes(diet: String, recipeInfo: Boolean, fillIngredients: Boolean, type: String) =
         retrofitApi.getRecipes(diet,recipeInfo,fillIngredients,type)
 
+
     companion object{
 
         private var instance : ApiRepository? = null

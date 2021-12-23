@@ -25,6 +25,10 @@ class RecipesViewModel : ViewModel() {
     val recipesLiveData = MutableLiveData<List<Result>>()
     val recipesErrorLiveData = MutableLiveData<String>()
 
+    // ماحط
+    var selectedRecipeMutabileLiveData = MutableLiveData<Result>()
+
+
     //=========================================================//
    // var recipesResponse : MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
@@ -37,6 +41,7 @@ class RecipesViewModel : ViewModel() {
             try {
                 val response = apiRepo.getRecipes("String",true,true,"String")
                 if (response.isSuccessful){
+
                     response.body()?.run {
                         Log.d(TAG,this.toString())
                         // ask mohammed >>>> right or wrong

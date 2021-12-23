@@ -16,12 +16,13 @@ import com.example.finalcapstone_nomapp.model.Result
 import com.squareup.picasso.Picasso
 
 
-class RecipesAdapter() :
+class RecipesAdapter(var viewModel: RecipesViewModel) :
     RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() {
        // في الادابتر نحط model اللي نبي نستخدمها
         // put result the list from FoodRecipes so we can use what inside it
     // نحط  result لاننا نبي نستخدم اللي داخلها
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Result>(){
+
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.id == newItem.id
         }
@@ -61,7 +62,6 @@ class RecipesAdapter() :
         holder.timeTextView.text = "${item.readyInMinutes}"
         holder.heartTextView.text = "${item.aggregateLikes}"
 
-
         //================================================================//
         Picasso.get().load(item.image).into(holder.recipesImageView)
         //=================================================================//
@@ -71,7 +71,9 @@ class RecipesAdapter() :
             holder.veganTextView.setTextColor(R.color.green)
         }
 
-
+        holder.itemView.setOnClickListener {
+            viewModel.selectedRecipeMutabileLiveData.postValue(item)
+        }
 
     }
 
@@ -94,10 +96,6 @@ class RecipesAdapter() :
         val timeTextView: TextView = itemView.findViewById(R.id.time_textView)
         val veganImageView: ImageView = itemView.findViewById(R.id.vigan_imageView)
         val veganTextView : TextView = itemView.findViewById(R.id.vigan_textView)
-
-
-
-
 
     }
 

@@ -12,4 +12,13 @@
     <string name="recipes_fragment">Recipes </string>
     <string name="favorite_fragment">Favorites </string>
     <string name="nointernet">No Internet Connection</string>
+    <string name="title">Title</string>
+    <string name="vegetarian">vegetarian</string>
+    <string name="vegan">vegan</string>
+    <string name="Vegetarian">Vegetarian</string>
+    <string name="Vegan">Vegan</string>
+    <string name="Dairyfree">Dairy Free</string>
+    <string name="glutenfree">Gluten Free</string>
+    <string name="healthy">Healthy</string>
+    <string name="cheap">Cheap</string>
 </resources>
