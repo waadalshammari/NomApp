@@ -37,7 +37,11 @@ class DetailsFragment : Fragment() {
         recipesViewModel.selectedRecipeMutabileLiveData.observe(viewLifecycleOwner,{
         //================================================================//
             Picasso.get().load(it.image).into(binding.recipeDetailsImageView2)
+
         //================================================================//
+            binding.detailLikesTextView.text = it.aggregateLikes.toString()
+            binding.detailsTimeTextView.text = it.readyInMinutes.toString()
+        //=================================================================//
             binding.detailVegetarianTextView.text = it.vegetarian.toString()
             binding.detailVeganTextView.text = it.vegan.toString()
             binding.detailDairyfreeTextView.text = it.dairyFree.toString()
@@ -46,28 +50,35 @@ class DetailsFragment : Fragment() {
             binding.detailCheapTextView.text = it.cheap.toString()
             binding.summaryTextView.text = it.summary
 
-            if (it.vegetarian){
-                binding.detailVegetarianImageView.setImageResource(R.drawable.check)
-                binding.detailVeganTextView.setTextColor(R.color.green)
-            }  else if(it.vegan){
+            when {
+                it.vegetarian -> {
+                    binding.detailVegetarianImageView.setImageResource(R.drawable.check)
+                    binding.detailVeganTextView.setTextColor(R.color.green)
+                }
+                it.vegan -> {
 
-                binding.detailVeganImageView.setImageResource(R.drawable.check)
-                binding.detailVeganTextView.setTextColor(R.color.green)
-            } else if (it.dairyFree){
-                binding.detailDairyfreeImageView.setImageResource(R.drawable.check)
-                binding.detailDairyfreeTextView.setTextColor(R.color.green)
+                    binding.detailVeganImageView.setImageResource(R.drawable.check)
+                    binding.detailVeganTextView.setTextColor(R.color.green)
+                }
+                it.dairyFree -> {
+                    binding.detailDairyfreeImageView.setImageResource(R.drawable.check)
+                    binding.detailDairyfreeTextView.setTextColor(R.color.green)
 
-            } else if (it.glutenFree){
-                binding.detailGlutenfreeImageView.setImageResource(R.drawable.check)
-                binding.detailGlutenfreeTextView.setTextColor(R.color.green)
+                }
+                it.glutenFree -> {
+                    binding.detailGlutenfreeImageView.setImageResource(R.drawable.check)
+                    binding.detailGlutenfreeTextView.setTextColor(R.color.green)
 
-            } else if (it.veryHealthy){
-                binding.detailHealthyImageView.setImageResource(R.drawable.check)
-                binding.detailGlutenfreeTextView.setTextColor(R.color.green)
+                }
+                it.veryHealthy -> {
+                    binding.detailHealthyImageView.setImageResource(R.drawable.check)
+                    binding.detailGlutenfreeTextView.setTextColor(R.color.green)
 
-            }  else if (it.cheap){
-                binding.detailCheapImageView.setImageResource(R.drawable.check)
-                binding.detailCheapTextView.setTextColor(R.color.green)
+                }
+                it.cheap -> {
+                    binding.detailCheapImageView.setImageResource(R.drawable.check)
+                    binding.detailCheapTextView.setTextColor(R.color.green)
+                }
             }
 
 

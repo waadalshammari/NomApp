@@ -45,7 +45,8 @@ class RecipesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recipesAdapter = RecipesAdapter(recipesViewModel)
-        binding.shimmerRecyclerView.adapter = recipesAdapter
+
+       // binding.shimmerRecyclerView.adapter = recipesAdapter
 
 
 

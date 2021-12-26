@@ -9,10 +9,26 @@
         android:id="@+id/RecipesFragment"
         android:name="com.example.finalcapstone_nomapp.main.view.RecipesFragment"
         android:label="Recipes"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_RecipesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_RecipesFragment_to_FavoriteFragment"
+            app:destination="@id/FavoriteFragment" />
+    </fragment>
     <fragment
         android:id="@+id/FavoriteFragment"
         android:name="com.example.finalcapstone_nomapp.main.view.FavoriteFragment"
-        android:label="Favorites"
+        android:label="@string/cook"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.finalcapstone_nomapp.main.view.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_RecipesFragment"
+            app:destination="@id/RecipesFragment" />
+    </fragment>
 </navigation>

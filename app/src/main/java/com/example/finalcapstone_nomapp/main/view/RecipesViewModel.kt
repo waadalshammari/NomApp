@@ -6,26 +6,32 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalcapstone_nomapp.api.RecipesApi
+import com.example.finalcapstone_nomapp.model.FavoriteModel
 import com.example.finalcapstone_nomapp.model.FoodRecipe
 import com.example.finalcapstone_nomapp.model.Result
 import com.example.finalcapstone_nomapp.repository.ApiRepository
+import com.example.finalcapstone_nomapp.repository.FavoriteApiRepository
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.http.Tag
-import java.lang.Exception
+import kotlin.Exception
 
 private const val TAG = "RecipesViewModel"
 
 class RecipesViewModel : ViewModel() {
 
     // Getting instance from ApiRepository with companion object function
+
     private val apiRepo = ApiRepository.get()
+
+    private val favoriteApiRepo = FavoriteApiRepository.get()
 
     // livedata
     val recipesLiveData = MutableLiveData<List<Result>>()
     val recipesErrorLiveData = MutableLiveData<String>()
 
-    // ماحط
+    // ماحط ليست ريسلت لان نبي وصفه وحده ولكل وصفه اشياء معينه تظهر لنا عكس اول اكثر من وصفه يعني نحط ليست
     var selectedRecipeMutabileLiveData = MutableLiveData<Result>()
 
 
@@ -44,7 +50,7 @@ class RecipesViewModel : ViewModel() {
 
                     response.body()?.run {
                         Log.d(TAG,this.toString())
-                        // ask mohammed >>>> right or wrong
+
                         recipesLiveData.postValue(this.results)
                         Log.d(TAG, "success response ${response.body()}")
                     }
@@ -58,6 +64,28 @@ class RecipesViewModel : ViewModel() {
                 recipesErrorLiveData.postValue(e.message.toString())
             }
         }
+    }
+
+    fun addFavoriteRecipe(favoriteModel : Result , note : String ){
+      viewModelScope.launch (Dispatchers.IO) {
+          try {
+              val response = favoriteApiRepo.addToFavoriteRecipes(FavoriteModel("String",
+              "String","String",0,0,"String",true))
+
+              FirebaseAuth.getInstance().currentUser!!.uid
+
+              if (response.isSuccessful){
+                  response.body()?.run {
+                      Log.d(TAG,this.toString())
+
+                  }
+              } else{
+                  Log.d(TAG,"NOT SUCCESS ${response.message()}")
+              }
+          } catch (e : Exception){
+              Log.d(TAG,e.message.toString())
+          }
+      }
     }
 
 }

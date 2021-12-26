@@ -21,4 +21,6 @@
     <string name="glutenfree">Gluten Free</string>
     <string name="healthy">Healthy</string>
     <string name="cheap">Cheap</string>
+    <string name="no_doit_later">You Do Not Have Any Recipe To Cook</string>
+    <string name="cook">Cook Later</string>
 </resources>

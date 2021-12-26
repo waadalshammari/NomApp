@@ -11,6 +11,9 @@ import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.databinding.ActivitySplashBinding
 import com.example.finalcapstone_nomapp.main.identity.LoginActivity
 import com.example.finalcapstone_nomapp.repository.ApiRepository
+const val SHARED_PREF = "login"
+const val USERID = "userId"
+const val STATE = "state"
 
 class SplashActivity : AppCompatActivity() {
 

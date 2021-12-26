@@ -15,7 +15,7 @@ import com.example.finalcapstone_nomapp.model.FoodRecipe
 import com.example.finalcapstone_nomapp.model.Result
 import com.squareup.picasso.Picasso
 
-
+// viewModel ??
 class RecipesAdapter(var viewModel: RecipesViewModel) :
     RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() {
        // في الادابتر نحط model اللي نبي نستخدمها
@@ -70,7 +70,7 @@ class RecipesAdapter(var viewModel: RecipesViewModel) :
             holder.veganImageView.setImageResource(R.drawable.vegan)
             holder.veganTextView.setTextColor(R.color.green)
         }
-
+        // made itemView clickable
         holder.itemView.setOnClickListener {
             viewModel.selectedRecipeMutabileLiveData.postValue(item)
         }
