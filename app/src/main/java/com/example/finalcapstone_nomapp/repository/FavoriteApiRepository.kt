@@ -1,7 +1,11 @@
 package com.example.finalcapstone_nomapp.repository
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import com.example.finalcapstone_nomapp.api.FavoriteApi
+import com.example.finalcapstone_nomapp.main.view.SHARED_PREF
+import com.example.finalcapstone_nomapp.main.view.USERID
 import com.example.finalcapstone_nomapp.model.FavoriteModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,12 +14,17 @@ import java.lang.Exception
 
 private const val BASE_URL = "https://61af59a93e2aba0017c4920e.mockapi.io"
 
+
+
+
 class FavoriteApiRepository (val context: Context){
+
 
     private val retrofitService = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
 
     private val retrofitAPi = retrofitService.create(FavoriteApi::class.java)
 
@@ -32,6 +41,7 @@ class FavoriteApiRepository (val context: Context){
 
     companion object{
 
+        @SuppressLint("StaticFieldLeak")
         private var instance : FavoriteApiRepository? = null
 
         fun init(context: Context){

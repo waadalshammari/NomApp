@@ -21,7 +21,11 @@
         android:id="@+id/FavoriteFragment"
         android:name="com.example.finalcapstone_nomapp.main.view.FavoriteFragment"
         android:label="@string/cook"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_FavoriteFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.finalcapstone_nomapp.main.view.DetailsFragment"
@@ -30,5 +34,8 @@
         <action
             android:id="@+id/action_detailsFragment_to_RecipesFragment"
             app:destination="@id/RecipesFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_FavoriteFragment"
+            app:destination="@id/FavoriteFragment" />
     </fragment>
 </navigation>

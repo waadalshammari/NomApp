@@ -1,5 +1,6 @@
 package com.example.finalcapstone_nomapp.main.identity
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.main.view.MainActivity
+import com.example.finalcapstone_nomapp.main.view.SHARED_PREF
+import com.example.finalcapstone_nomapp.main.view.STATE
+import com.example.finalcapstone_nomapp.main.view.USERID
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -16,6 +20,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val sharedPref = getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
+        val sharedEditor = sharedPref.edit()
 
        // hide action bar
         supportActionBar?.hide()
@@ -45,6 +52,9 @@ class LoginActivity : AppCompatActivity() {
                             val firebaseUser : FirebaseUser = task.result!!.user!!
                             Toast.makeText(this,"User Registered Successfully", Toast.LENGTH_SHORT)
                                 .show()
+                            sharedEditor.putBoolean(STATE,true)
+                            sharedEditor.putString(USERID,FirebaseAuth.getInstance().currentUser!!.uid)
+                            sharedEditor.commit()
                             // Navigate to main Activity
                             val intent = Intent(this, MainActivity::class.java)
                             intent.putExtra("UserId", firebaseUser.uid)

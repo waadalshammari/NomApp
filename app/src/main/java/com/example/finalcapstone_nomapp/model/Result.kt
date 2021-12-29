@@ -10,8 +10,8 @@ data class Result(
     val cheap: Boolean,
     @SerializedName("dairyFree")
     val dairyFree: Boolean,
-    @SerializedName("extendedIngredients")
-    val extendedIngredients: List<ExtendedIngredient>,
+//    @SerializedName("extendedIngredients")
+//    val extendedIngredients: List<ExtendedIngredient>,
     @SerializedName("glutenFree")
     val glutenFree: Boolean,
     @SerializedName("id")
@@ -20,10 +20,10 @@ data class Result(
     val image: String,
     @SerializedName("readyInMinutes")
     val readyInMinutes: Int,
-    @SerializedName("sourceName")
-    val sourceName: String,
-    @SerializedName("sourceUrl")
-    val sourceUrl: String,
+//    @SerializedName("sourceName")
+//    val sourceName: String,
+//    @SerializedName("sourceUrl")
+//    val sourceUrl: String,
     @SerializedName("summary")
     val summary: String,
     @SerializedName("title")

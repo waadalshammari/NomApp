@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.finalcapstone_nomapp.R
@@ -14,7 +15,6 @@ import com.example.finalcapstone_nomapp.main.view.FavoriteRecipesViewModel
 import com.example.finalcapstone_nomapp.model.FavoriteModel
 import com.squareup.picasso.Picasso
 
-//
 class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
     RecyclerView.Adapter<FavoriteRecipeAdapter.FavoriteRecipeViewHolder>() {
 
@@ -31,6 +31,7 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
     }
 
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -58,7 +59,18 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
         holder.favoriteTimeTextView.text = "${item.ready}"
         holder.likeHeartTextView.text = "${item.likes}"
 
-        //===================================================================//
+        holder.itemView.setOnClickListener {
+            viewModel.likes = item.likes.toString()
+            viewModel.image = item.image
+            viewModel.ready = item.ready
+            viewModel.description = item.description
+            viewModel.title = item.title
+            viewModel.vegan = item.vegan
+
+            holder.itemView.findNavController().navigate(R.id.action_FavoriteFragment_to_detailsFragment)
+        }
+
+//        //===================================================================//
 
         Picasso.get().load(item.image).into(holder.favoriteRecipeImageView)
 
@@ -80,17 +92,15 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
         differ.submitList(list)
     }
 
-
     class FavoriteRecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val favoriteRecipeImageView: ImageView = itemView.findViewById(R.id.favorite_imageView)
         val favoriteRecipeTitleTextView: TextView =
             itemView.findViewById(R.id.favorite_title_textView)
         val favoriteRecipeDescriptionTextview: TextView =
             itemView.findViewById(R.id.favorite_description_textView)
-        val likeHeartImageView: ImageView = itemView.findViewById(R.id.favorite_heart_imageView)
         val likeHeartTextView: TextView = itemView.findViewById(R.id.favorite_heart_textView)
-        val favoriteTimeImageView: ImageView = itemView.findViewById(R.id.favorite_time_imageView)
-        val favoriteTimeTextView: TextView = itemView.findViewById(R.id.favorite_title_textView)
+        val favoriteTimeTextView: TextView = itemView.findViewById(R.id.favorite_time_textView)
         val favoriteVeganImageView: ImageView = itemView.findViewById(R.id.favorite_vegan_imageView)
         val favoriteVeganTextView: TextView = itemView.findViewById(R.id.favorite_vegan_textView)
 

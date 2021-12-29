@@ -7,19 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.databinding.FragmentDetailsBinding
+import com.example.finalcapstone_nomapp.model.Result
 import com.squareup.picasso.Picasso
 
 
 class DetailsFragment : Fragment() {
       private lateinit var binding : FragmentDetailsBinding
       private val recipesViewModel : RecipesViewModel by activityViewModels()
+    private val favoriteRecipesViewModel : FavoriteRecipesViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
        binding = FragmentDetailsBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -29,7 +34,29 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val result = Result(
+            recipesViewModel.likes.toInt(),
+            true,
+            true,
+            true,
+            recipesViewModel.id.toInt(),
+            recipesViewModel.image,
+            recipesViewModel.ready,
+            recipesViewModel.description,
+            recipesViewModel.title,
+            recipesViewModel.vegan,
+            true,
+            true
+        )
+
+
         observers()
+
+        binding.addImageView.setOnClickListener(){
+            observers()
+            favoriteRecipesViewModel.addFavoriteRecipe(result)
+            findNavController().navigate(R.id.action_detailsFragment_to_FavoriteFragment)
+        }
     }
 
     @SuppressLint("ResourceAsColor")
@@ -39,16 +66,12 @@ class DetailsFragment : Fragment() {
             Picasso.get().load(it.image).into(binding.recipeDetailsImageView2)
 
         //================================================================//
+            binding.detailTitleTextView.text = it.title
             binding.detailLikesTextView.text = it.aggregateLikes.toString()
             binding.detailsTimeTextView.text = it.readyInMinutes.toString()
         //=================================================================//
-            binding.detailVegetarianTextView.text = it.vegetarian.toString()
-            binding.detailVeganTextView.text = it.vegan.toString()
-            binding.detailDairyfreeTextView.text = it.dairyFree.toString()
-            binding.detailGlutenfreeTextView.text = it.glutenFree.toString()
-            binding.detailHealthyTextView.text = it.veryHealthy.toString()
-            binding.detailCheapTextView.text = it.cheap.toString()
             binding.summaryTextView.text = it.summary
+         //==================================================================//
 
             when {
                 it.vegetarian -> {

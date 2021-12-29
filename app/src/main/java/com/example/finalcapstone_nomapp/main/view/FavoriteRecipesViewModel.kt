@@ -1,14 +1,17 @@
 package com.example.finalcapstone_nomapp.main.view
 
 import android.util.Log
+import android.widget.Adapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.finalcapstone_nomapp.main.adapters.FavoriteRecipeAdapter
 import com.example.finalcapstone_nomapp.model.FavoriteModel
+import com.example.finalcapstone_nomapp.model.Result
 import com.example.finalcapstone_nomapp.repository.ApiRepository.Companion.get
 import com.example.finalcapstone_nomapp.repository.FavoriteApiRepository
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import okhttp3.Dispatcher
 
@@ -18,35 +21,45 @@ private const val TAG = "FavoriteRecipesViewModel"
 
 class FavoriteRecipesViewModel  : ViewModel(){
 
-    private val apiRepo = FavoriteApiRepository()
-
+    private val apiRepo = FavoriteApiRepository.get()
     val favoriteRecipesLiveData = MutableLiveData<List<FavoriteModel>>()
     val favoriteRecipesErrorLiveData = MutableLiveData<String>()
     val editFavoriteLiveData = MutableLiveData<String>()
     val deleteFavoriteLiveData = MutableLiveData<String>()
 
+    var likes = ""
+    var id = ""
+    var image = ""
+    var ready = 0
+    var description = ""
+    var title = ""
+    var vegan = true
 
 fun callFavoriteRecipes(){
 
-    viewModelScope.launch (Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.IO) {
 
         try {
             val response =apiRepo.getFavoriteRecipes()
             if (response.isSuccessful){
                 response.body()?.run {
                     Log.d(TAG,this.toString())
-                    favoriteRecipesLiveData.postValue(this)
+                  favoriteRecipesLiveData.postValue(this)
                     Log.d(TAG,"success response ${response.body()}")
+
                 }
             } else{
                 Log.d(TAG,"NOT SUCCESS ${response.message()}")
                 favoriteRecipesErrorLiveData.postValue(response.message())
             }
+
+
         } catch (e : Exception){
             Log.d(TAG,e.message.toString())
             favoriteRecipesErrorLiveData.postValue(e.message.toString())
         }
     }
+
 }
 
 fun editFavoriteRecipe(FavoriteBody : FavoriteModel){
@@ -88,6 +101,29 @@ fun editFavoriteRecipe(FavoriteBody : FavoriteModel){
             } catch (e : Exception){
                 Log.d(TAG,e.message.toString())
                 favoriteRecipesErrorLiveData.postValue(e.message.toString())
+            }
+        }
+    }
+
+    fun addFavoriteRecipe(favoriteModel : Result){
+        viewModelScope.launch (Dispatchers.IO) {
+            try {
+                val response = apiRepo.addToFavoriteRecipes(FavoriteModel(favoriteModel.aggregateLikes,
+                    favoriteModel.id.toString(),favoriteModel.image,favoriteModel.readyInMinutes,favoriteModel.summary,
+                    favoriteModel.title,favoriteModel.vegan, FirebaseAuth.getInstance().currentUser!!.uid))
+
+
+
+                if (response.isSuccessful){
+                    response.body()?.run {
+                        Log.d(TAG,this.toString())
+
+                    }
+                } else{
+                    Log.d(TAG,"NOT SUCCESS ${response.message()}")
+                }
+            } catch (e : Exception){
+                Log.d(TAG,e.message.toString())
             }
         }
     }

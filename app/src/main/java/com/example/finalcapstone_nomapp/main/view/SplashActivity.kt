@@ -1,5 +1,6 @@
 package com.example.finalcapstone_nomapp.main.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,8 @@ import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.databinding.ActivitySplashBinding
 import com.example.finalcapstone_nomapp.main.identity.LoginActivity
 import com.example.finalcapstone_nomapp.repository.ApiRepository
+import com.example.finalcapstone_nomapp.repository.FavoriteApiRepository
+
 const val SHARED_PREF = "login"
 const val USERID = "userId"
 const val STATE = "state"
@@ -22,7 +25,10 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
         ApiRepository.init(this)
+        FavoriteApiRepository.init(this)
 
         // for hiding action bar on the splash screen
         supportActionBar?.hide()
@@ -41,6 +47,9 @@ class SplashActivity : AppCompatActivity() {
 
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val sharedPref = getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
+
 
 
         // set motion for splash
@@ -66,9 +75,16 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                val intent = Intent(this@SplashActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+
+                if (sharedPref.getBoolean("state", false)) {
+                    val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else{
+                    val intent = Intent(this@SplashActivity,LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
             override fun onTransitionTrigger(
                 motionLayout: MotionLayout?,

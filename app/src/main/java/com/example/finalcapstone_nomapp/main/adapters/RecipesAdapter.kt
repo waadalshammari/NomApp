@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.finalcapstone_nomapp.R
@@ -72,7 +73,15 @@ class RecipesAdapter(var viewModel: RecipesViewModel) :
         }
         // made itemView clickable
         holder.itemView.setOnClickListener {
+            viewModel.description = item.summary
+            viewModel.image = item.image
+            viewModel.id = item.id.toString()
+            viewModel.likes = item.aggregateLikes.toString()
+            viewModel.ready = item.readyInMinutes
+            viewModel.title = item.title
+            viewModel.vegan = item.vegan
             viewModel.selectedRecipeMutabileLiveData.postValue(item)
+            holder.itemView.findNavController().navigate(R.id.action_RecipesFragment_to_detailsFragment)
         }
 
     }
@@ -98,5 +107,7 @@ class RecipesAdapter(var viewModel: RecipesViewModel) :
         val veganTextView : TextView = itemView.findViewById(R.id.vigan_textView)
 
     }
+
+
 
 }

@@ -23,4 +23,6 @@
     <string name="cheap">Cheap</string>
     <string name="no_doit_later">You Do Not Have Any Recipe To Cook</string>
     <string name="cook">Cook Later</string>
+    <string name="cookingLater">Cook it Later</string>
+    <string name="iwillcookit">I\'ll cook it</string>
 </resources>

@@ -1,20 +1,16 @@
 package com.example.finalcapstone_nomapp.main.view
 
-import android.net.wifi.WifiManager
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalcapstone_nomapp.api.RecipesApi
 import com.example.finalcapstone_nomapp.model.FavoriteModel
-import com.example.finalcapstone_nomapp.model.FoodRecipe
 import com.example.finalcapstone_nomapp.model.Result
 import com.example.finalcapstone_nomapp.repository.ApiRepository
 import com.example.finalcapstone_nomapp.repository.FavoriteApiRepository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.http.Tag
 import kotlin.Exception
 
 private const val TAG = "RecipesViewModel"
@@ -34,7 +30,13 @@ class RecipesViewModel : ViewModel() {
     // ماحط ليست ريسلت لان نبي وصفه وحده ولكل وصفه اشياء معينه تظهر لنا عكس اول اكثر من وصفه يعني نحط ليست
     var selectedRecipeMutabileLiveData = MutableLiveData<Result>()
 
-
+    var likes = ""
+    var id = ""
+    var image = ""
+    var ready = 0
+    var description = ""
+    var title = ""
+    var vegan = true
     //=========================================================//
    // var recipesResponse : MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
@@ -65,27 +67,4 @@ class RecipesViewModel : ViewModel() {
             }
         }
     }
-
-    fun addFavoriteRecipe(favoriteModel : Result , note : String ){
-      viewModelScope.launch (Dispatchers.IO) {
-          try {
-              val response = favoriteApiRepo.addToFavoriteRecipes(FavoriteModel("String",
-              "String","String",0,0,"String",true))
-
-              FirebaseAuth.getInstance().currentUser!!.uid
-
-              if (response.isSuccessful){
-                  response.body()?.run {
-                      Log.d(TAG,this.toString())
-
-                  }
-              } else{
-                  Log.d(TAG,"NOT SUCCESS ${response.message()}")
-              }
-          } catch (e : Exception){
-              Log.d(TAG,e.message.toString())
-          }
-      }
-    }
-
 }

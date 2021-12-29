@@ -24,24 +24,35 @@ class FavoriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
 
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         favoriteAdapter = FavoriteRecipeAdapter(favoriteViewModel)
+        binding.favoriteRecyclerView.adapter = favoriteAdapter
+
+
 
         observers()
+
+
         favoriteViewModel.callFavoriteRecipes()
+
+
     }
 
 
     fun observers(){
         favoriteViewModel.favoriteRecipesLiveData.observe(viewLifecycleOwner,{
-            favoriteAdapter.submitList(it)
+
+                favoriteAdapter.submitList(it)
+
         })
 
         favoriteViewModel.favoriteRecipesErrorLiveData.observe(viewLifecycleOwner,{
