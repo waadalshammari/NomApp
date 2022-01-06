@@ -33,7 +33,9 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+       // حطيت فاريبل بسبب ان لما استدعي الفن الخاصه بالادد عند السيت اون كلك ليسنر
+        // راح يخليني اكتب قيمه لكل الداتا اللي راح تجي وهدا غلط هدي الطريقه راح تخليني
+        // فقط استدعي المودل ويجيب لي الداتا اللي موجوده
         val result = Result(
             recipesViewModel.likes.toInt(),
             true,
@@ -54,8 +56,12 @@ class DetailsFragment : Fragment() {
 
         binding.addImageView.setOnClickListener(){
             observers()
-            favoriteRecipesViewModel.addFavoriteRecipe(result)
+            favoriteRecipesViewModel.addFavoriteRecipe(result,"")
             findNavController().navigate(R.id.action_detailsFragment_to_FavoriteFragment)
+
+            if (binding.addImageView.isPressed){
+               binding.addImageView.setImageResource(R.drawable.addimageviewblack)
+            }
         }
     }
 
@@ -69,6 +75,7 @@ class DetailsFragment : Fragment() {
             binding.detailTitleTextView.text = it.title
             binding.detailLikesTextView.text = it.aggregateLikes.toString()
             binding.detailsTimeTextView.text = it.readyInMinutes.toString()
+
         //=================================================================//
             binding.summaryTextView.text = it.summary
          //==================================================================//

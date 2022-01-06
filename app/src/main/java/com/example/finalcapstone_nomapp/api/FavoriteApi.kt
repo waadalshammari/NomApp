@@ -18,12 +18,12 @@ interface FavoriteApi {
         @Body FavoriteBody : FavoriteModel
     ) : Response<ResponseBody>
 
-    @PUT ("/Favorite_Recipes/:id")
+    @PUT ("/Favorite_Recipes/{id}")
     suspend fun editFavoriteRecipes(@Path("id") id : String,
     @Body FavoriteBody: FavoriteModel
     ) : Response<FavoriteModel>
 
-    @DELETE("/Favorite_Recipes/:id")
+    @DELETE("/Favorite_Recipes/{id}")
     suspend fun deleteFavoriteRecipe (@Path("id") id : String
     ) : Response<ResponseBody>
 

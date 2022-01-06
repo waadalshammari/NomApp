@@ -7,12 +7,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalCapstone_NomApp">
+        <activity
+            android:name=".main.view.FirstActivity"
+            android:exported="true" />
         <activity
             android:name=".main.identity.LoginActivity"
             android:exported="true" />
@@ -30,8 +33,7 @@
         </activity>
         <activity
             android:name=".main.view.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

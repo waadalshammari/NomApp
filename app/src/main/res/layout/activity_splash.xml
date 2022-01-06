@@ -5,17 +5,18 @@
     android:id="@+id/motion_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/foodappsplashwithoutword"
+    android:background="@drawable/splashwithoutlogo"
     app:layoutDescription="@xml/activity_splash_scene"
     tools:context=".main.view.SplashActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="208dp"
-        android:layout_height="208dp"
+        android:layout_width="236dp"
+        android:layout_height="285dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cooking" />
+        app:srcCompat="@drawable/nomappremovebg" />
+
 </androidx.constraintlayout.motion.widget.MotionLayout>

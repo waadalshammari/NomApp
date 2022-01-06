@@ -6,7 +6,7 @@
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="1000"
+        motion:duration="3000"
         motion:autoTransition="animateToEnd">
        <KeyFrameSet>
            <KeyAttribute
@@ -27,12 +27,28 @@
                android:scaleY="0.7" />
            <KeyAttribute
                motion:motionTarget="@+id/imageView"
+               motion:framePosition="20"
+               android:scaleX="1.2" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView"
+               motion:framePosition="20"
+               android:scaleY="1.2" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView"
                motion:framePosition="40"
                android:scaleX="0.7" />
            <KeyAttribute
                motion:motionTarget="@+id/imageView"
                motion:framePosition="40"
                android:scaleY="0.7" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView"
+               motion:framePosition="100"
+               android:scaleX="50.0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView"
+               motion:framePosition="100"
+               android:scaleY="50.0" />
        </KeyFrameSet>
     </Transition>
 
@@ -40,5 +56,14 @@
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/imageView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="208dp"
+            android:layout_height="208dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+             />
     </ConstraintSet>
 </MotionScene>

@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.finalcapstone_nomapp.R
-import com.example.finalcapstone_nomapp.databinding.ActivitySignUpBinding
 import com.example.finalcapstone_nomapp.main.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -25,7 +24,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
        // get context
-        val fullName : EditText = findViewById(R.id.fullname_editText_register)
+        val fullName : EditText = findViewById(R.id.fullnameEditText)
         val email : EditText = findViewById(R.id.email_editText_register)
         val password : EditText = findViewById(R.id.password_editText_register)
         val signupButton : Button = findViewById(R.id.register_button)

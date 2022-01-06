@@ -5,6 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <EditText
+        android:id="@+id/add_yournote_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/addyournote"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toStartOf="@+id/save_Note_ImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/favorite_item_cardview" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/favorite_item_cardview"
         android:layout_width="0dp"
@@ -70,13 +83,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="36dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/favorite_heart_textView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/favorite_heart_textView"
                 app:layout_constraintTop_toBottomOf="@+id/favorite_description_textView"
-                app:layout_constraintVertical_bias="0.444"
                 app:srcCompat="@drawable/ic_heart_24"
                 app:tint="@color/red" />
 
@@ -95,6 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/favorite_time_textView"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/favorite_time_textView"
                 app:layout_constraintTop_toTopOf="@+id/favorite_heart_imageView"
                 app:srcCompat="@drawable/ic_time_24"
@@ -131,7 +142,29 @@
                 android:textAlignment="center"
                 app:layout_constraintStart_toEndOf="@+id/favorite_time_textView"
                 app:layout_constraintTop_toBottomOf="@+id/favorite_vegan_imageView" />
+
+            <ImageView
+                android:id="@+id/delete_ImageView"
+                android:layout_width="31dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/favorite_imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.08"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/save_Note_ImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/add_yournote_EditText"
+        app:srcCompat="@drawable/ic_baseline_save_alt_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

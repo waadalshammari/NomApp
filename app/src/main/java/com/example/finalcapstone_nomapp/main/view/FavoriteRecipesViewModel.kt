@@ -35,6 +35,7 @@ class FavoriteRecipesViewModel  : ViewModel(){
     var title = ""
     var vegan = true
 
+
 fun callFavoriteRecipes(){
 
     viewModelScope.launch(Dispatchers.IO) {
@@ -105,12 +106,13 @@ fun editFavoriteRecipe(FavoriteBody : FavoriteModel){
         }
     }
 
-    fun addFavoriteRecipe(favoriteModel : Result){
+    fun addFavoriteRecipe(favoriteModel : Result , note : String){
         viewModelScope.launch (Dispatchers.IO) {
             try {
                 val response = apiRepo.addToFavoriteRecipes(FavoriteModel(favoriteModel.aggregateLikes,
                     favoriteModel.id.toString(),favoriteModel.image,favoriteModel.readyInMinutes,favoriteModel.summary,
-                    favoriteModel.title,favoriteModel.vegan, FirebaseAuth.getInstance().currentUser!!.uid))
+                    favoriteModel.title,favoriteModel.vegan, FirebaseAuth.getInstance().currentUser!!.uid
+                ,""))
 
 
 

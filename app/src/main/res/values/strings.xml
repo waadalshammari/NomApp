@@ -25,4 +25,7 @@
     <string name="cook">Cook Later</string>
     <string name="cookingLater">Cook it Later</string>
     <string name="iwillcookit">I\'ll cook it</string>
+    <string name="addyournote">Add your note ..</string>
+    <string name="oneplace">one place for most delicious recipes</string>
+    <string name="getStarted">Get Started</string>
 </resources>

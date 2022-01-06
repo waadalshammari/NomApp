@@ -21,7 +21,7 @@ class RecipesViewModel : ViewModel() {
 
     private val apiRepo = ApiRepository.get()
 
-    private val favoriteApiRepo = FavoriteApiRepository.get()
+   // private val favoriteApiRepo = FavoriteApiRepository.get()
 
     // livedata
     val recipesLiveData = MutableLiveData<List<Result>>()

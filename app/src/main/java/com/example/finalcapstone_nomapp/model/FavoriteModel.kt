@@ -19,5 +19,7 @@ data class FavoriteModel(
     @SerializedName("vegan")
     val vegan: Boolean,
     @SerializedName("userid")
-    val userID: String
+    val userID: String,
+    @SerializedName("note")
+    var note: String
 )

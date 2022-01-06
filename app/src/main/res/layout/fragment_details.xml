@@ -101,7 +101,7 @@
 
     <TextView
         android:id="@+id/detail_vegetarian_textView"
-        android:layout_width="80dp"
+        android:layout_width="0dp"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:text="@string/Vegetarian"
@@ -121,7 +121,7 @@
 
     <TextView
         android:id="@+id/detail_vegan_textView"
-        android:layout_width="40dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:text="@string/Vegan"
@@ -142,7 +142,7 @@
 
     <TextView
         android:id="@+id/detail_dairyfree_textView"
-        android:layout_width="70dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:text="@string/Dairyfree"
@@ -162,7 +162,7 @@
 
     <TextView
         android:id="@+id/detail_glutenfree_textView"
-        android:layout_width="75dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:text="@string/glutenfree"
@@ -183,7 +183,7 @@
 
     <TextView
         android:id="@+id/detail_healthy_TextView"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:text="@string/healthy"
@@ -203,7 +203,7 @@
 
     <TextView
         android:id="@+id/detail_cheap_textView"
-        android:layout_width="40dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:text="@string/cheap"
@@ -239,27 +239,15 @@
     </ScrollView>
 
     <ImageView
-        android:id="@+id/add_imageView"
+        android:id="@+id/addImageView"
         android:layout_width="38dp"
         android:layout_height="26dp"
-        android:layout_marginBottom="40dp"
-        android:src="@drawable/cooklateradd"
+        android:src="@drawable/addimageview"
         android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/recipe_details_imageView2"
         app:layout_constraintEnd_toStartOf="@+id/detail_likes_imageView"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:text="@string/iwillcookit"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/add_imageView"
-        tools:layout_editor_absoluteX="-22dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/detail_likes_imageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

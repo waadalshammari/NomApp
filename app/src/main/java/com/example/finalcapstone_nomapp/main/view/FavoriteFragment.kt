@@ -60,7 +60,19 @@ class FavoriteFragment : Fragment() {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
             }
         })
+        favoriteViewModel.deleteFavoriteLiveData.observe(viewLifecycleOwner,{
+            it?.let {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        favoriteViewModel.editFavoriteLiveData.observe(viewLifecycleOwner,{
+            it?.let {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
+
 
 
 }

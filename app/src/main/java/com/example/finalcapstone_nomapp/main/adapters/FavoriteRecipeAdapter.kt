@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
@@ -13,9 +14,11 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.main.view.FavoriteRecipesViewModel
 import com.example.finalcapstone_nomapp.model.FavoriteModel
+import com.example.finalcapstone_nomapp.model.Result
 import com.squareup.picasso.Picasso
 
 class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
+
     RecyclerView.Adapter<FavoriteRecipeAdapter.FavoriteRecipeViewHolder>() {
 
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FavoriteModel>() {
@@ -45,6 +48,7 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
                 false
             )
         )
+
     }
 
     @SuppressLint("ResourceAsColor")
@@ -58,6 +62,7 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
         holder.favoriteRecipeDescriptionTextview.text = item.description
         holder.favoriteTimeTextView.text = "${item.ready}"
         holder.likeHeartTextView.text = "${item.likes}"
+       // holder.addNote.text = item.note
 
         holder.itemView.setOnClickListener {
             viewModel.likes = item.likes.toString()
@@ -69,8 +74,23 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
 
             holder.itemView.findNavController().navigate(R.id.action_FavoriteFragment_to_detailsFragment)
         }
+        holder.deleteImageView.setOnClickListener {
+            var list = mutableListOf<FavoriteModel>()
+            list.addAll(differ.currentList)
+            list.remove(item)
+            differ.submitList(list.toList())
+            viewModel.deleteFavoriteRecipe(item)
+        }
 
-//        //===================================================================//
+        holder.addNoteButton.setOnClickListener {
+            val text = holder.addNote.text.toString()
+            item.note = text
+            viewModel.editFavoriteRecipe(item)
+            holder.addNote.isFocusable = false
+
+        }
+
+        //===================================================================//
 
         Picasso.get().load(item.image).into(holder.favoriteRecipeImageView)
 
@@ -95,14 +115,15 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
     class FavoriteRecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val favoriteRecipeImageView: ImageView = itemView.findViewById(R.id.favorite_imageView)
-        val favoriteRecipeTitleTextView: TextView =
-            itemView.findViewById(R.id.favorite_title_textView)
-        val favoriteRecipeDescriptionTextview: TextView =
-            itemView.findViewById(R.id.favorite_description_textView)
+        val favoriteRecipeTitleTextView: TextView = itemView.findViewById(R.id.favorite_title_textView)
+        val favoriteRecipeDescriptionTextview: TextView = itemView.findViewById(R.id.favorite_description_textView)
         val likeHeartTextView: TextView = itemView.findViewById(R.id.favorite_heart_textView)
         val favoriteTimeTextView: TextView = itemView.findViewById(R.id.favorite_time_textView)
         val favoriteVeganImageView: ImageView = itemView.findViewById(R.id.favorite_vegan_imageView)
         val favoriteVeganTextView: TextView = itemView.findViewById(R.id.favorite_vegan_textView)
+        val deleteImageView : ImageView = itemView.findViewById(R.id.delete_ImageView)
+        val addNote : EditText = itemView.findViewById(R.id.add_yournote_EditText)
+        val addNoteButton : ImageView = itemView.findViewById(R.id.save_Note_ImageView)
 
     }
 
