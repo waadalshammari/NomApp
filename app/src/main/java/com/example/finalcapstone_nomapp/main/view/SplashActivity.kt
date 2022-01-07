@@ -77,11 +77,11 @@ class SplashActivity : AppCompatActivity() {
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
 
                 if (sharedPref.getBoolean("state", false)) {
-                    val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+                    val intent = Intent(this@SplashActivity, FirstActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else{
-                    val intent = Intent(this@SplashActivity,FirstActivity::class.java)
+                    val intent = Intent(this@SplashActivity,MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }

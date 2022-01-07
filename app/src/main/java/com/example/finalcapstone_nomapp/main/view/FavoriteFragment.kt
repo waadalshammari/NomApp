@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.databinding.FragmentFavoriteBinding
 import com.example.finalcapstone_nomapp.main.adapters.FavoriteRecipeAdapter
+import com.example.finalcapstone_nomapp.util.SwipeToDeleteCallback
 
 
 class FavoriteFragment : Fragment() {
@@ -17,6 +20,8 @@ class FavoriteFragment : Fragment() {
     private lateinit var binding : FragmentFavoriteBinding
     private lateinit var favoriteAdapter : FavoriteRecipeAdapter
     private val favoriteViewModel : FavoriteRecipesViewModel by activityViewModels()
+
+
 
 
     override fun onCreateView(
@@ -37,6 +42,15 @@ class FavoriteFragment : Fragment() {
         favoriteAdapter = FavoriteRecipeAdapter(favoriteViewModel)
         binding.favoriteRecyclerView.adapter = favoriteAdapter
 
+
+        // for swipe delete
+       val swipeDelete = object : SwipeToDeleteCallback(this.requireContext()){
+           override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+               favoriteAdapter.deleteItem(viewHolder.adapterPosition)
+           }
+       }
+        val touchHelper = ItemTouchHelper(swipeDelete)
+        touchHelper.attachToRecyclerView(binding.favoriteRecyclerView)
 
 
         observers()

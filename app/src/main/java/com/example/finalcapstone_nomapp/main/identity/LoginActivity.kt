@@ -50,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
                             task ->
                         if (task.isSuccessful){
                             val firebaseUser : FirebaseUser = task.result!!.user!!
-                            Toast.makeText(this,"User Registered Successfully", Toast.LENGTH_SHORT)
+                            Toast.makeText(this,"User Login Successfully", Toast.LENGTH_SHORT)
                                 .show()
                             sharedEditor.putBoolean(STATE,true)
                             sharedEditor.putString(USERID,FirebaseAuth.getInstance().currentUser!!.uid)

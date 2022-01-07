@@ -74,13 +74,13 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
 
             holder.itemView.findNavController().navigate(R.id.action_FavoriteFragment_to_detailsFragment)
         }
-        holder.deleteImageView.setOnClickListener {
-            var list = mutableListOf<FavoriteModel>()
-            list.addAll(differ.currentList)
-            list.remove(item)
-            differ.submitList(list.toList())
-            viewModel.deleteFavoriteRecipe(item)
-        }
+//        holder.deleteImageView.setOnClickListener {
+//            var list = mutableListOf<FavoriteModel>()
+//            list.addAll(differ.currentList)
+//            list.remove(item)
+//            differ.submitList(list.toList())
+//            viewModel.deleteFavoriteRecipe(item)
+//        }
 
         holder.addNoteButton.setOnClickListener {
             val text = holder.addNote.text.toString()
@@ -102,6 +102,8 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
             holder.favoriteVeganTextView.setTextColor(R.color.green)
         }
 
+
+
     }
 
     override fun getItemCount(): Int {
@@ -110,6 +112,17 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
 
     fun submitList(list: List<FavoriteModel>) {
         differ.submitList(list)
+    }
+   // fun for swipe delete >> favorite fragment
+    fun deleteItem(index : Int){
+        val item1 = differ.currentList[index]
+        var list = mutableListOf<FavoriteModel>()
+        list.addAll(differ.currentList)
+        list.removeAt(index)
+        differ.submitList(list.toList())
+        notifyDataSetChanged()
+        viewModel.deleteFavoriteRecipe(item1)
+
     }
 
     class FavoriteRecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -121,7 +134,6 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
         val favoriteTimeTextView: TextView = itemView.findViewById(R.id.favorite_time_textView)
         val favoriteVeganImageView: ImageView = itemView.findViewById(R.id.favorite_vegan_imageView)
         val favoriteVeganTextView: TextView = itemView.findViewById(R.id.favorite_vegan_textView)
-        val deleteImageView : ImageView = itemView.findViewById(R.id.delete_ImageView)
         val addNote : EditText = itemView.findViewById(R.id.add_yournote_EditText)
         val addNoteButton : ImageView = itemView.findViewById(R.id.save_Note_ImageView)
 

@@ -1,14 +1,13 @@
 package com.example.finalcapstone_nomapp.main.view
 
 import android.util.Log
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalcapstone_nomapp.model.FavoriteModel
+import com.example.finalcapstone_nomapp.main.adapters.RecipesAdapter
 import com.example.finalcapstone_nomapp.model.Result
 import com.example.finalcapstone_nomapp.repository.ApiRepository
-import com.example.finalcapstone_nomapp.repository.FavoriteApiRepository
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.Exception
@@ -21,12 +20,14 @@ class RecipesViewModel : ViewModel() {
 
     private val apiRepo = ApiRepository.get()
 
-   // private val favoriteApiRepo = FavoriteApiRepository.get()
+//   private lateinit var binding: FragmentRecipesBinding
+//
+    private lateinit var recipesAdapter : RecipesAdapter
+
 
     // livedata
     val recipesLiveData = MutableLiveData<List<Result>>()
     val recipesErrorLiveData = MutableLiveData<String>()
-
     // ماحط ليست ريسلت لان نبي وصفه وحده ولكل وصفه اشياء معينه تظهر لنا عكس اول اكثر من وصفه يعني نحط ليست
     var selectedRecipeMutabileLiveData = MutableLiveData<Result>()
 
@@ -37,19 +38,19 @@ class RecipesViewModel : ViewModel() {
     var description = ""
     var title = ""
     var vegan = true
-    //=========================================================//
-   // var recipesResponse : MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
+
+    //=========================================================//
     fun callRecipes(){
      //coroutine in this scope will live as long the view model is alive.
-
         viewModelScope.launch(Dispatchers.IO) {
           // use try and catch to handle http exceptions
 
             try {
-                val response = apiRepo.getRecipes("String",true,true,"String")
-                if (response.isSuccessful){
 
+                val response = apiRepo.getRecipes("String",true,true,"String")
+
+                if (response.isSuccessful){
                     response.body()?.run {
                         Log.d(TAG,this.toString())
 
