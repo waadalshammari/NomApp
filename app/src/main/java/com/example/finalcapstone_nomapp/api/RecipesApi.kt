@@ -20,8 +20,6 @@ interface RecipesApi {
 }
 
 // :Response<FoodRecipe> not list cause it is not list >> result is the list
-// let us create something like hash map to add all our query once
-// QueryMap queries : Map<String,String>
 
 // الشيء المتغير من الاي بي اي وابيه يكون ثابت راح اعطيه قيمه مثل النمبر ولكن اللي احتاج داتا منه مو شيء معين
 // اعطيه نوع الداتا وفي الريبوزرتي استدعيه مع النوع الموجود في الاي بي اي

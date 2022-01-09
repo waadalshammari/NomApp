@@ -249,5 +249,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/detail_likes_imageView" />
 
+    <ImageView
+        android:id="@+id/share_Imageview"
+        android:layout_width="29dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_baseline_share_24"
+        app:layout_constraintBottom_toBottomOf="@+id/recipe_details_imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/detail_likes_imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addImageView"
+        app:layout_constraintTop_toTopOf="@+id/details_overlay"
+        app:layout_constraintVertical_bias="0.583" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
