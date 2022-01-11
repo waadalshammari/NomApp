@@ -1,6 +1,7 @@
 package com.example.finalcapstone_nomapp.main.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +12,12 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+import com.bumptech.glide.Glide
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.main.view.FavoriteRecipesViewModel
 import com.example.finalcapstone_nomapp.model.FavoriteModel
-import com.example.finalcapstone_nomapp.model.Result
-import com.squareup.picasso.Picasso
 
-class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
+class FavoriteRecipeAdapter(val context: Context, val viewModel: FavoriteRecipesViewModel) :
 
     RecyclerView.Adapter<FavoriteRecipeAdapter.FavoriteRecipeViewHolder>() {
 
@@ -91,8 +91,7 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
         }
 
         //===================================================================//
-
-        Picasso.get().load(item.image).into(holder.favoriteRecipeImageView)
+         Glide.with(context).load(item.image).into(holder.favoriteRecipeImageView)
 
         //==================================================================//
 
@@ -101,8 +100,6 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
             holder.favoriteVeganImageView.setImageResource(R.drawable.vegan)
             holder.favoriteVeganTextView.setTextColor(R.color.green)
         }
-
-
 
     }
 
@@ -114,7 +111,7 @@ class FavoriteRecipeAdapter(var viewModel: FavoriteRecipesViewModel) :
         differ.submitList(list)
     }
    // fun for swipe delete >> favorite fragment
-    fun deleteItem(index : Int){
+    fun deleteIt  (index : Int){
         val item1 = differ.currentList[index]
         var list = mutableListOf<FavoriteModel>()
         list.addAll(differ.currentList)

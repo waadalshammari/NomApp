@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.finalcapstone_nomapp.R
+import com.example.finalcapstone_nomapp.main.view.DetailsFragment
 import com.example.finalcapstone_nomapp.main.view.RecipesViewModel
 import com.example.finalcapstone_nomapp.model.FoodRecipe
 import com.example.finalcapstone_nomapp.model.Result
@@ -73,13 +74,15 @@ class RecipesAdapter(var viewModel: RecipesViewModel) :
         }
         // made itemView clickable
         holder.itemView.setOnClickListener {
-            viewModel.description = item.summary
-            viewModel.image = item.image
-            viewModel.id = item.id.toString()
-            viewModel.likes = item.aggregateLikes.toString()
-            viewModel.ready = item.readyInMinutes
-            viewModel.title = item.title
-            viewModel.vegan = item.vegan
+//            viewModel.description = item.summary
+//            viewModel.image = item.image
+//          //  viewModel.id = item.id.toString()
+//            viewModel.likes = item.aggregateLikes.toInt()
+//            viewModel.ready = item.readyInMinutes
+//            viewModel.title = item.title
+//            viewModel.vegan = item.vegan
+
+
             viewModel.selectedRecipeMutabileLiveData.postValue(item)
             holder.itemView.findNavController().navigate(R.id.action_RecipesFragment_to_detailsFragment)
         }
@@ -99,9 +102,9 @@ class RecipesAdapter(var viewModel: RecipesViewModel) :
         val recipesImageView: ImageView = itemView.findViewById(R.id.recipe_imageView)
         val titleTextView: TextView = itemView.findViewById(R.id.title_textView)
         val descriptionTextView: TextView = itemView.findViewById(R.id.description_textView)
-        val heartImageView: ImageView = itemView.findViewById(R.id.heart_imageView)
+       // val heartImageView: ImageView = itemView.findViewById(R.id.heart_imageView)
         val heartTextView: TextView = itemView.findViewById(R.id.heart_textView)
-        val timeImageView: ImageView = itemView.findViewById(R.id.time_imageView)
+       // val timeImageView: ImageView = itemView.findViewById(R.id.time_imageView)
         val timeTextView: TextView = itemView.findViewById(R.id.time_textView)
         val veganImageView: ImageView = itemView.findViewById(R.id.vigan_imageView)
         val veganTextView : TextView = itemView.findViewById(R.id.vigan_textView)

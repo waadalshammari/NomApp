@@ -75,7 +75,7 @@
         app:layout_constraintStart_toStartOf="@+id/detail_likes_textView" />
 
     <TextView
-        android:id="@+id/detail_title_textView"
+        android:id="@+id/detailTitleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -96,8 +96,8 @@
         android:layout_height="24dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/ic_checkmark"
-        app:layout_constraintStart_toStartOf="@+id/detail_title_textView"
-        app:layout_constraintTop_toBottomOf="@+id/detail_title_textView" />
+        app:layout_constraintStart_toStartOf="@+id/detailTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/detailTitleTextView" />
 
     <TextView
         android:id="@+id/detail_vegetarian_textView"

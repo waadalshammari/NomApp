@@ -1,5 +1,6 @@
 package com.example.finalcapstone_nomapp.repository
 
+import android.annotation.SuppressLint
 import android.content.Context
 import com.example.finalcapstone_nomapp.api.RecipesApi
 import retrofit2.Retrofit
@@ -18,13 +19,13 @@ class ApiRepository ( val context: Context) {
         .build()
 
     private val retrofitApi = retrofitService.create(RecipesApi::class.java)
-
     suspend fun getRecipes(diet: String, recipeInfo: Boolean, fillIngredients: Boolean, type: String) =
         retrofitApi.getRecipes(diet,recipeInfo,fillIngredients,type)
 
 
     companion object{
 
+        @SuppressLint("StaticFieldLeak")
         private var instance : ApiRepository? = null
 
         fun init(context: Context){

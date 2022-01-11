@@ -14,7 +14,6 @@ class FirstActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first)
 
-
          supportActionBar?.hide()
 
         val startButton : Button = findViewById(R.id.start_button)

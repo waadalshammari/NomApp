@@ -22,8 +22,8 @@ data class Result(
     val readyInMinutes: Int,
 //    @SerializedName("sourceName")
 //    val sourceName: String,
-//    @SerializedName("sourceUrl")
-//    val sourceUrl: String,
+    @SerializedName("sourceUrl")
+    val sourceUrl: String,
     @SerializedName("summary")
     val summary: String,
     @SerializedName("title")

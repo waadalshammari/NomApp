@@ -2,17 +2,13 @@ package com.example.finalcapstone_nomapp.repository
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.SharedPreferences
 import com.example.finalcapstone_nomapp.api.FavoriteApi
-import com.example.finalcapstone_nomapp.main.view.SHARED_PREF
-import com.example.finalcapstone_nomapp.main.view.USERID
 import com.example.finalcapstone_nomapp.model.FavoriteModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import java.lang.Exception
 
-private const val BASE_URL = "https://61af59a93e2aba0017c4920e.mockapi.io"
+private const val BASE_URL = "https://61dd3d95f60e8f0017668686.mockapi.io"
 
 
 

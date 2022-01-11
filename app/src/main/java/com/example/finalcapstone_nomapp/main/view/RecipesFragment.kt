@@ -46,11 +46,11 @@ class RecipesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var recyclerView = binding.recyclerView
 
-        recipesAdapter = RecipesAdapter(recipesViewModel)
-        val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)
-        recyclerView.setLayoutManager(mLayoutManager)
+//        recipesAdapter = RecipesAdapter(recipesViewModel)
+//        val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)
+//        recyclerView.setLayoutManager(mLayoutManager)
 
-        recipesAdapter = RecipesAdapter(RecipesViewModel())
+        recipesAdapter = RecipesAdapter(recipesViewModel)
         recyclerView.adapter = recipesAdapter
 
 
@@ -58,11 +58,11 @@ class RecipesFragment : Fragment() {
         observers()
         recipesViewModel.callRecipes()
 
-
+     // shimmer
         Handler(Looper.getMainLooper()).postDelayed({
 
-        },3000)
-        observers()
+        },1000)
+//        observers()
     }
 
 
@@ -71,8 +71,8 @@ class RecipesFragment : Fragment() {
         recipesViewModel.recipesLiveData.observe(viewLifecycleOwner,{
             recipesAdapter.submitList(it)
 
-            binding.shimmerViewContainer.stopShimmer()
-            binding.shimmerViewContainer.visibility = View.GONE
+//            binding.shimmerViewContainer.stopShimmer()
+//            binding.shimmerViewContainer.visibility = View.GONE
 
 
         })

@@ -1,6 +1,5 @@
 package com.example.finalcapstone_nomapp.api
 
-import androidx.room.Delete
 import com.example.finalcapstone_nomapp.model.FavoriteModel
 import okhttp3.ResponseBody
 import retrofit2.Response

@@ -39,7 +39,7 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        favoriteAdapter = FavoriteRecipeAdapter(favoriteViewModel)
+        favoriteAdapter = FavoriteRecipeAdapter(requireActivity(),favoriteViewModel)
         binding.favoriteRecyclerView.adapter = favoriteAdapter
 
 
@@ -54,17 +54,12 @@ class FavoriteFragment : Fragment() {
 
 
         observers()
-
-
         favoriteViewModel.callFavoriteRecipes()
-
-
     }
 
 
     fun observers(){
         favoriteViewModel.favoriteRecipesLiveData.observe(viewLifecycleOwner,{
-
                 favoriteAdapter.submitList(it)
 
         })
@@ -86,7 +81,4 @@ class FavoriteFragment : Fragment() {
             }
         })
     }
-
-
-
 }

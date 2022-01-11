@@ -20,8 +20,6 @@ class RecipesViewModel : ViewModel() {
 
     private val apiRepo = ApiRepository.get()
 
-//   private lateinit var binding: FragmentRecipesBinding
-//
     private lateinit var recipesAdapter : RecipesAdapter
 
 
@@ -31,13 +29,13 @@ class RecipesViewModel : ViewModel() {
     // ماحط ليست ريسلت لان نبي وصفه وحده ولكل وصفه اشياء معينه تظهر لنا عكس اول اكثر من وصفه يعني نحط ليست
     var selectedRecipeMutabileLiveData = MutableLiveData<Result>()
 
-    var likes = ""
-    var id = ""
-    var image = ""
-    var ready = 0
-    var description = ""
-    var title = ""
-    var vegan = true
+//    var likes = "
+//    var id = ""
+//    var image = ""
+//    var ready = 0
+//    var description = ""
+//    var title = ""
+//    var vegan = true
 
 
     //=========================================================//
