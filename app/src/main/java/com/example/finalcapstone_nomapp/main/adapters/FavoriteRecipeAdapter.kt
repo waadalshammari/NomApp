@@ -2,6 +2,9 @@ package com.example.finalcapstone_nomapp.main.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -16,8 +20,14 @@ import com.bumptech.glide.Glide
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.main.view.FavoriteRecipesViewModel
 import com.example.finalcapstone_nomapp.model.FavoriteModel
+import com.example.finalcapstone_nomapp.model.Result
+import kotlin.math.log
 
-class FavoriteRecipeAdapter(val context: Context, val viewModel: FavoriteRecipesViewModel) :
+private const val TAG = "FavoriteRecipeAdapter"
+
+// context for Glide
+class FavoriteRecipeAdapter(val context: Context, val viewModel: FavoriteRecipesViewModel ,
+) :
 
     RecyclerView.Adapter<FavoriteRecipeAdapter.FavoriteRecipeViewHolder>() {
 
@@ -50,28 +60,28 @@ class FavoriteRecipeAdapter(val context: Context, val viewModel: FavoriteRecipes
         )
 
     }
-
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: FavoriteRecipeViewHolder, position: Int) {
 
         val item = differ.currentList[position]
 
         //================================================================//
-
         holder.favoriteRecipeTitleTextView.text = item.title
         holder.favoriteRecipeDescriptionTextview.text = item.description
         holder.favoriteTimeTextView.text = "${item.ready}"
         holder.likeHeartTextView.text = "${item.likes}"
-       // holder.addNote.text = item.note
+        holder.addNote.setText(item.note)
+
 
         holder.itemView.setOnClickListener {
-            viewModel.likes = item.likes.toString()
-            viewModel.image = item.image
-            viewModel.ready = item.ready
-            viewModel.description = item.description
-            viewModel.title = item.title
-            viewModel.vegan = item.vegan
-
+//            viewModel.likes = item.likes.toString()
+//            viewModel.image = item.image
+//            viewModel.ready = item.ready
+//            viewModel.description = item.description
+//            viewModel.title = item.title
+//            viewModel.vegan = item.vegan
+           viewModel.selectedRecipeMutabileLiveData.postValue(item)
+            Log.d(TAG, "item$item")
             holder.itemView.findNavController().navigate(R.id.action_FavoriteFragment_to_detailsFragment)
         }
 //        holder.deleteImageView.setOnClickListener {
@@ -81,21 +91,20 @@ class FavoriteRecipeAdapter(val context: Context, val viewModel: FavoriteRecipes
 //            differ.submitList(list.toList())
 //            viewModel.deleteFavoriteRecipe(item)
 //        }
-
         holder.addNoteButton.setOnClickListener {
             val text = holder.addNote.text.toString()
             item.note = text
             viewModel.editFavoriteRecipe(item)
+            // الموشر يروح حق الايدت تكست
             holder.addNote.isFocusable = false
-
         }
-
+//        holder.favoriteRecipeImageView.setOnClickListener {
+//            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
+//            context.startActivity(intent)
+//        }
         //===================================================================//
          Glide.with(context).load(item.image).into(holder.favoriteRecipeImageView)
-
         //==================================================================//
-
-
         if (item.vegan) {
             holder.favoriteVeganImageView.setImageResource(R.drawable.vegan)
             holder.favoriteVeganTextView.setTextColor(R.color.green)
@@ -111,7 +120,7 @@ class FavoriteRecipeAdapter(val context: Context, val viewModel: FavoriteRecipes
         differ.submitList(list)
     }
    // fun for swipe delete >> favorite fragment
-    fun deleteIt  (index : Int){
+    fun deleteItem  (index : Int){
         val item1 = differ.currentList[index]
         var list = mutableListOf<FavoriteModel>()
         list.addAll(differ.currentList)

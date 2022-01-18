@@ -18,10 +18,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 
 import com.google.android.material.internal.ViewUtils.dpToPx
 
-
-
-
-
 class RecipesFragment : Fragment() {
 
     private lateinit var binding : FragmentRecipesBinding
@@ -61,18 +57,16 @@ class RecipesFragment : Fragment() {
      // shimmer
         Handler(Looper.getMainLooper()).postDelayed({
 
-        },1000)
-//        observers()
+        },3000)
+
     }
-
-
 
     fun observers(){
         recipesViewModel.recipesLiveData.observe(viewLifecycleOwner,{
             recipesAdapter.submitList(it)
 
-//            binding.shimmerViewContainer.stopShimmer()
-//            binding.shimmerViewContainer.visibility = View.GONE
+            binding.shimmerViewContainer.stopShimmer()
+            binding.shimmerViewContainer.visibility = View.GONE
 
 
         })

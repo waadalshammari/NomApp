@@ -29,8 +29,8 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.finalcapstone_nomapp.main.view.DetailsFragment"
-        android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        android:label="Recipe Details"
+        tools:layout="@layout/fragment_details">
         <action
             android:id="@+id/action_detailsFragment_to_RecipesFragment"
             app:destination="@id/RecipesFragment" />

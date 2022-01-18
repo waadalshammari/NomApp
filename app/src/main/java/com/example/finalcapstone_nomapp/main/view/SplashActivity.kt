@@ -2,6 +2,7 @@ package com.example.finalcapstone_nomapp.main.view
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.databinding.ActivitySplashBinding
 import com.example.finalcapstone_nomapp.main.identity.LoginActivity
+import com.example.finalcapstone_nomapp.main.identity.sharedPref
 import com.example.finalcapstone_nomapp.repository.ApiRepository
 import com.example.finalcapstone_nomapp.repository.FavoriteApiRepository
 
@@ -33,7 +35,7 @@ class SplashActivity : AppCompatActivity() {
         // for hiding action bar on the splash screen
         supportActionBar?.hide()
 
-        // hiding statusBar have a full splash screen
+       //  hiding statusBar have a full splash screen
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             window.insetsController?.hide(WindowInsets.Type.statusBars())
@@ -47,10 +49,6 @@ class SplashActivity : AppCompatActivity() {
 
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val sharedPref = getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
-
-
 
         // set motion for splash
 
@@ -76,12 +74,17 @@ class SplashActivity : AppCompatActivity() {
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
 
+                sharedPref = getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
+
                 if (sharedPref.getBoolean("state", false)) {
-                    val intent = Intent(this@SplashActivity, FirstActivity::class.java)
+
+                    val intent = Intent(this@SplashActivity,MainActivity::class.java)
                     startActivity(intent)
                     finish()
+
                 } else{
-                    val intent = Intent(this@SplashActivity,MainActivity::class.java)
+
+                    val intent = Intent(this@SplashActivity, FirstActivity::class.java)
                     startActivity(intent)
                     finish()
                 }

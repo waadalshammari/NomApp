@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -22,14 +23,14 @@ class FavoriteFragment : Fragment() {
     private val favoriteViewModel : FavoriteRecipesViewModel by activityViewModels()
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
+        binding.favoriteNoDataImageView
+        binding.favoriteNoDataTextView
 
         return binding.root
 
@@ -39,7 +40,7 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        favoriteAdapter = FavoriteRecipeAdapter(requireActivity(),favoriteViewModel)
+        favoriteAdapter = FavoriteRecipeAdapter(requireActivity(),favoriteViewModel )
         binding.favoriteRecyclerView.adapter = favoriteAdapter
 
 
@@ -55,12 +56,25 @@ class FavoriteFragment : Fragment() {
 
         observers()
         favoriteViewModel.callFavoriteRecipes()
+
+
+
     }
 
 
     fun observers(){
         favoriteViewModel.favoriteRecipesLiveData.observe(viewLifecycleOwner,{
                 favoriteAdapter.submitList(it)
+
+
+            if (it.isNotEmpty()) {
+                binding.favoriteNoDataImageView.isVisible = false
+                binding.favoriteNoDataTextView.isVisible = false
+            } else{
+                (it.isEmpty())
+                binding.favoriteNoDataImageView.isVisible = true
+                binding.favoriteNoDataTextView.isVisible = true
+            }
 
         })
 

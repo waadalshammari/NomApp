@@ -82,7 +82,6 @@ class RecipesAdapter(var viewModel: RecipesViewModel) :
 //            viewModel.title = item.title
 //            viewModel.vegan = item.vegan
 
-
             viewModel.selectedRecipeMutabileLiveData.postValue(item)
             holder.itemView.findNavController().navigate(R.id.action_RecipesFragment_to_detailsFragment)
         }

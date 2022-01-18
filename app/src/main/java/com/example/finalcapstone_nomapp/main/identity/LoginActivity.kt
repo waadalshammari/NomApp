@@ -2,6 +2,7 @@ package com.example.finalcapstone_nomapp.main.identity
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -16,13 +17,13 @@ import com.example.finalcapstone_nomapp.main.view.USERID
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
+ lateinit var sharedPref : SharedPreferences
+ lateinit var sharedEditor : SharedPreferences.Editor
+
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        val sharedPref = getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
-        val sharedEditor = sharedPref.edit()
 
        // hide action bar
         supportActionBar?.hide()
@@ -45,16 +46,17 @@ class LoginActivity : AppCompatActivity() {
             // make suer email&&password not empty
             if (emil.isNotEmpty() && password.isNotEmpty()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emil,password)
-
                     .addOnCompleteListener(){
                             task ->
                         if (task.isSuccessful){
                             val firebaseUser : FirebaseUser = task.result!!.user!!
                             Toast.makeText(this,"User Login Successfully", Toast.LENGTH_SHORT)
                                 .show()
+                            sharedEditor = sharedPref.edit()
                             sharedEditor.putBoolean(STATE,true)
                             sharedEditor.putString(USERID,FirebaseAuth.getInstance().currentUser!!.uid)
                             sharedEditor.commit()
+
                             // Navigate to main Activity
                             val intent = Intent(this, MainActivity::class.java)
                             intent.putExtra("UserId", firebaseUser.uid)

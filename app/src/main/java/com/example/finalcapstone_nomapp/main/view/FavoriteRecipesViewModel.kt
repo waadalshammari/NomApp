@@ -19,17 +19,17 @@ class FavoriteRecipesViewModel  : ViewModel(){
 
     private val apiRepo = FavoriteApiRepository.get()
     val favoriteRecipesLiveData = MutableLiveData<List<FavoriteModel>>()
+    var selectedRecipeMutabileLiveData = MutableLiveData<FavoriteModel>()
     val favoriteRecipesErrorLiveData = MutableLiveData<String>()
     val editFavoriteLiveData = MutableLiveData<String>()
     val deleteFavoriteLiveData = MutableLiveData<String>()
-
-    var likes = ""
-    var id = ""
-    var image = ""
-    var ready = 0
-    var description = ""
-    var title = ""
-    var vegan = true
+//    var likes = ""
+//    var id = ""
+//    var image = ""
+//    var ready = 0
+//    var description = ""
+//    var title = ""
+//    var vegan = true
 
 
 fun callFavoriteRecipes(){
@@ -39,6 +39,7 @@ fun callFavoriteRecipes(){
         try {
             val response =apiRepo.getFavoriteRecipes()
             if (response.isSuccessful){
+
                 response.body()?.run {
                     Log.d(TAG,this.toString())
                   favoriteRecipesLiveData.postValue(this)
@@ -67,6 +68,7 @@ fun editFavoriteRecipe(FavoriteBody : FavoriteModel){
             val response = apiRepo.editFavoriteRecipes(FavoriteBody.id,FavoriteBody)
             if (response.isSuccessful){
                 response.body()?.run {
+                  //  callFavoriteRecipes()
                     Log.d(TAG,this.toString())
 
                     editFavoriteLiveData.postValue("success response")
@@ -106,13 +108,13 @@ fun editFavoriteRecipe(FavoriteBody : FavoriteModel){
         viewModelScope.launch (Dispatchers.IO) {
             try {
                 val response = apiRepo.addToFavoriteRecipes(
-                    FavoriteModel(favoriteModel.aggregateLikes,
-                    favoriteModel.id.toString(),favoriteModel.image,favoriteModel.readyInMinutes,favoriteModel.summary,
-                    favoriteModel.title,favoriteModel.vegan, FirebaseAuth.getInstance().currentUser!!.uid
-                ,"")
+                    FavoriteModel(favoriteModel.aggregateLikes,favoriteModel.cheap,favoriteModel.dairyFree,
+                        favoriteModel.glutenFree,favoriteModel.id.toString(),favoriteModel.image,favoriteModel.readyInMinutes,
+                        favoriteModel.sourceUrl,favoriteModel.summary,favoriteModel.title,favoriteModel.vegan,favoriteModel.vegetarian,
+                        favoriteModel.veryHealthy,"",""
                 )
-
-
+                )
+                Log.d(TAG, "URL ${favoriteModel.sourceUrl}")
 
                 if (response.isSuccessful){
                     response.body()?.run {

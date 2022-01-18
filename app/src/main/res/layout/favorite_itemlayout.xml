@@ -5,18 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/add_yournote_EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/addyournote"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toStartOf="@+id/save_Note_ImageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favorite_item_cardview" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/favorite_item_cardview"
@@ -144,17 +132,37 @@
                 app:layout_constraintStart_toEndOf="@+id/favorite_time_textView"
                 app:layout_constraintTop_toBottomOf="@+id/favorite_vegan_imageView" />
 
+            <ImageView
+                android:id="@+id/save_Note_ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/add_yournote_EditText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/add_yournote_EditText"
+                app:layout_constraintVertical_bias="0.681"
+                app:srcCompat="@drawable/ic_baseline_save_alt_24" />
+
+            <EditText
+                android:id="@+id/add_yournote_EditText"
+                android:layout_width="184dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="3dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/addyournote"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingLeft="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/save_Note_ImageView"
+                app:layout_constraintStart_toEndOf="@+id/favorite_imageView"
+                app:layout_constraintTop_toBottomOf="@+id/favorite_vegan_textView" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <ImageView
-        android:id="@+id/save_Note_ImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_yournote_EditText"
-        app:srcCompat="@drawable/ic_baseline_save_alt_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

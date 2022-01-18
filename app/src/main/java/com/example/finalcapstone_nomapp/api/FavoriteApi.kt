@@ -11,16 +11,18 @@ interface FavoriteApi {
     suspend fun getFavoriteRecipes(
        // @Query("userId") UserId: String
     ) : Response<List<FavoriteModel>>
-
+ // body -> show data (add)
     @POST ("/Favorite_Recipes")
     suspend fun addToFavoriteRecipes(
         @Body FavoriteBody : FavoriteModel
     ) : Response<ResponseBody>
-
+     // edit -> need data then edit
     @PUT ("/Favorite_Recipes/{id}")
     suspend fun editFavoriteRecipes(@Path("id") id : String,
     @Body FavoriteBody: FavoriteModel
     ) : Response<FavoriteModel>
+
+    // body -> just delete dat
 
     @DELETE("/Favorite_Recipes/{id}")
     suspend fun deleteFavoriteRecipe (@Path("id") id : String
@@ -28,3 +30,6 @@ interface FavoriteApi {
 
 
 }
+
+ // body بس يعرض لنا داتا مثل الحدف بس يحدف داتا ماحتاج داتا تطلع لي
+// التعديل الاديت نفس الشيء ماتجيب داتا انا اعدل بس عليها
