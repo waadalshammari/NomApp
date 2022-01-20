@@ -139,3 +139,108 @@ link to Figma [Figma Wireframe](https://www.figma.com/file/Q91sullzZ7KMApxlt370z
 
 
 
+planning : 
+
+
+On the beginning searched for different To do list apps to have full understanding about what I will work on and to have an idea about the design after that I designed my app using Figma then transformed the design on Android Studio. wrote down what my app need and what features I want to put on it, eventually start coding and working on my app.
+
+development process :
+
+  
+*Searched: for different apps and what is the basic features in every app
+*wrote : wrote down the features I wont for my apps and searched in different website for the code to understand what I will do when I start my coding.
+*designed : designed my app in Figma then In Android Studio.
+*wrote the code : created packages for database,adapter,viewmodel,fragments and splash .
+*run the app : tried to run the app and solved the errors.
+
+
+ Problem solving  strategy:
+decide the nature of the error (if it's syntax, runtime or logical) and
+Searched in different website like developer android,youtube,stackoverflow and medium asked programmers who have knowledge or Mr. Mohamed and Mr.Saad
+
+## Unsolved Problems which would be fixed in future iterations:
+
+* some minor issues regarding the enhancment of the design to make the user expereince more dynamic.
+* send notification to notifiy the user that it's time to cook on a specific time based on what the user write in the note.
+* filter 
+ ____________________________________________________________________________________________________________________________________________________________
+
+
+## My favorite functions work:
+
+* fun for swipe Delete 
+
+to delete by swipping to right or left
+
+ ```kotlin
+ 
+ // in class
+                                                                                    //Defining the Swipe Directions
+abstract class SwipeToDeleteCallback(context: Context) : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+
+     val backGroundColor = ContextCompat.getColor(context, R.color.red)
+    override fun onMove(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        target: RecyclerView.ViewHolder
+    ): Boolean {
+        return false
+    }
+   //To add our icon and background we just need to override onChildDraw(). This will draw our icon
+   // and background in the correct
+   // position as our RecyclerView item is
+   // swiped across the screen.
+    override fun onChildDraw(
+        c: Canvas,
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        dX: Float,
+        dY: Float,
+        actionState: Int,
+        isCurrentlyActive: Boolean
+    ) {
+
+        RecyclerViewSwipeDecorator.Builder(
+            c,
+            recyclerView,
+            viewHolder,
+            dX,
+            dY,
+            actionState,
+            isCurrentlyActive
+        )
+            .addBackgroundColor(backGroundColor)
+            .addActionIcon(R.drawable.ic_baseline_delete_24)
+            .addSwipeLeftLabel("DELETE")
+            .create()
+            .decorate()
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+    }
+}
+  /// in adapter 
+ // fun for swipe delete >> favorite fragment
+    fun deleteItem  (index : Int){
+        val item1 = differ.currentList[index]
+        var list = mutableListOf<FavoriteModel>()
+        list.addAll(differ.currentList)
+        list.removeAt(index)
+        differ.submitList(list.toList())
+        notifyDataSetChanged()
+        viewModel.deleteFavoriteRecipe(item1)
+
+    }
+    // in favorite fragment 
+    // for swipe delete >> Called when a ViewHolder is swiped by the user.
+       val swipeDelete = object : SwipeToDeleteCallback(this.requireContext()){
+           override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+               favoriteAdapter.deleteItem(viewHolder.adapterPosition)
+           }
+       }
+        // swipe to delete behaviors.
+        // is used to just swipe the rows. It doesn’t delete them itself
+        // We’ll need to delete it ourself using the RecyclerView Adapter.
+        val touchHelper = ItemTouchHelper(swipeDelete)
+        touchHelper.attachToRecyclerView(binding.favoriteRecyclerView)
+    
+```
+
