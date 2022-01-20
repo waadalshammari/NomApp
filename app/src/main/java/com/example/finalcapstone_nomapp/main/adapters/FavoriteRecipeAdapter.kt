@@ -71,26 +71,12 @@ class FavoriteRecipeAdapter(val context: Context, val viewModel: FavoriteRecipes
         holder.favoriteTimeTextView.text = "${item.ready}"
         holder.likeHeartTextView.text = "${item.likes}"
         holder.addNote.setText(item.note)
-
-
+        //================================================================//
         holder.itemView.setOnClickListener {
-//            viewModel.likes = item.likes.toString()
-//            viewModel.image = item.image
-//            viewModel.ready = item.ready
-//            viewModel.description = item.description
-//            viewModel.title = item.title
-//            viewModel.vegan = item.vegan
            viewModel.selectedRecipeMutabileLiveData.postValue(item)
             Log.d(TAG, "item$item")
-            holder.itemView.findNavController().navigate(R.id.action_FavoriteFragment_to_detailsFragment)
+            holder.itemView.findNavController().navigate(R.id.action_FavoriteFragment_to_detailsFavoriteFragment)
         }
-//        holder.deleteImageView.setOnClickListener {
-//            var list = mutableListOf<FavoriteModel>()
-//            list.addAll(differ.currentList)
-//            list.remove(item)
-//            differ.submitList(list.toList())
-//            viewModel.deleteFavoriteRecipe(item)
-//        }
         holder.addNoteButton.setOnClickListener {
             val text = holder.addNote.text.toString()
             item.note = text
@@ -98,10 +84,6 @@ class FavoriteRecipeAdapter(val context: Context, val viewModel: FavoriteRecipes
             // الموشر يروح حق الايدت تكست
             holder.addNote.isFocusable = false
         }
-//        holder.favoriteRecipeImageView.setOnClickListener {
-//            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
-//            context.startActivity(intent)
-//        }
         //===================================================================//
          Glide.with(context).load(item.image).into(holder.favoriteRecipeImageView)
         //==================================================================//

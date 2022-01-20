@@ -17,7 +17,7 @@ class FirstActivity : AppCompatActivity() {
          supportActionBar?.hide()
 
         val startButton : Button = findViewById(R.id.start_button)
-
+        // Navigate to loginActivity
         startButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

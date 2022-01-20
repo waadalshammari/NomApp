@@ -22,7 +22,7 @@ interface FavoriteApi {
     @Body FavoriteBody: FavoriteModel
     ) : Response<FavoriteModel>
 
-    // body -> just delete dat
+    // body -> just delete data
 
     @DELETE("/Favorite_Recipes/{id}")
     suspend fun deleteFavoriteRecipe (@Path("id") id : String
@@ -30,6 +30,5 @@ interface FavoriteApi {
 
 
 }
-
  // body بس يعرض لنا داتا مثل الحدف بس يحدف داتا ماحتاج داتا تطلع لي
 // التعديل الاديت نفس الشيء ماتجيب داتا انا اعدل بس عليها

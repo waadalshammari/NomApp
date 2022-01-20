@@ -50,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
                             task ->
                         if (task.isSuccessful){
                             val firebaseUser : FirebaseUser = task.result!!.user!!
-                            Toast.makeText(this,"User Login Successfully", Toast.LENGTH_SHORT)
+                            Toast.makeText(this,"You Login Successfully", Toast.LENGTH_SHORT)
                                 .show()
                             sharedEditor = sharedPref.edit()
                             sharedEditor.putBoolean(STATE,true)

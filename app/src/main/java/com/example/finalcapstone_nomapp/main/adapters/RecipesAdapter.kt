@@ -21,8 +21,8 @@ import com.squareup.picasso.Picasso
 class RecipesAdapter(var viewModel: RecipesViewModel) :
     RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() {
        // في الادابتر نحط model اللي نبي نستخدمها
-        // put result the list from FoodRecipes so we can use what inside it
-    // نحط  result لاننا نبي نستخدم اللي داخلها
+        // put result the list from FoodRecipes so we can use it
+    // نحط  result لاننا نبي نستخدمها
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Result>(){
 
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
@@ -57,7 +57,7 @@ class RecipesAdapter(var viewModel: RecipesViewModel) :
     override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
 
         val item = differ.currentList[position]
-        // data from API for them >> الداتا اللي راح تجي من الاي بي تجي هنا وتستقبلها
+        // data from API  >> الداتا اللي راح تجي من الاي بي تجي هنا وتستقبلها
         // احط الاشياء اللي ابيها تستقبل الداتا
         holder.titleTextView.text = item.title
         holder.descriptionTextView.text = item.summary
@@ -74,14 +74,6 @@ class RecipesAdapter(var viewModel: RecipesViewModel) :
         }
         // made itemView clickable
         holder.itemView.setOnClickListener {
-//            viewModel.description = item.summary
-//            viewModel.image = item.image
-//          //  viewModel.id = item.id.toString()
-//            viewModel.likes = item.aggregateLikes.toInt()
-//            viewModel.ready = item.readyInMinutes
-//            viewModel.title = item.title
-//            viewModel.vegan = item.vegan
-
             viewModel.selectedRecipeMutabileLiveData.postValue(item)
             holder.itemView.findNavController().navigate(R.id.action_RecipesFragment_to_detailsFragment)
         }
@@ -101,9 +93,7 @@ class RecipesAdapter(var viewModel: RecipesViewModel) :
         val recipesImageView: ImageView = itemView.findViewById(R.id.recipe_imageView)
         val titleTextView: TextView = itemView.findViewById(R.id.title_textView)
         val descriptionTextView: TextView = itemView.findViewById(R.id.description_textView)
-       // val heartImageView: ImageView = itemView.findViewById(R.id.heart_imageView)
         val heartTextView: TextView = itemView.findViewById(R.id.heart_textView)
-       // val timeImageView: ImageView = itemView.findViewById(R.id.time_imageView)
         val timeTextView: TextView = itemView.findViewById(R.id.time_textView)
         val veganImageView: ImageView = itemView.findViewById(R.id.vigan_imageView)
         val veganTextView : TextView = itemView.findViewById(R.id.vigan_textView)

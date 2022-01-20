@@ -10,13 +10,13 @@
     tools:context=".main.view.SplashActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="236dp"
-        android:layout_height="285dp"
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/nomappremovebg" />
-
+        app:srcCompat="@drawable/nomwithoutbackgroundforsplash" />
 </androidx.constraintlayout.motion.widget.MotionLayout>

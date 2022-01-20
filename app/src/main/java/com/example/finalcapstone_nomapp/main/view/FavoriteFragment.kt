@@ -44,15 +44,17 @@ class FavoriteFragment : Fragment() {
         binding.favoriteRecyclerView.adapter = favoriteAdapter
 
 
-        // for swipe delete
+        // for swipe delete >> Called when a ViewHolder is swiped by the user.
        val swipeDelete = object : SwipeToDeleteCallback(this.requireContext()){
            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                favoriteAdapter.deleteItem(viewHolder.adapterPosition)
            }
        }
+        // swipe to delete behaviors.
+        // is used to just swipe the rows. It doesn’t delete them itself
+        // We’ll need to delete it ourself using the RecyclerView Adapter.
         val touchHelper = ItemTouchHelper(swipeDelete)
         touchHelper.attachToRecyclerView(binding.favoriteRecyclerView)
-
 
         observers()
         favoriteViewModel.callFavoriteRecipes()

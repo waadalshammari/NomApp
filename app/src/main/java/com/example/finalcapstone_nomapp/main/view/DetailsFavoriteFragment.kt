@@ -1,50 +1,40 @@
 package com.example.finalcapstone_nomapp.main.view
 
 import android.annotation.SuppressLint
-import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.StrictMode
-import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.databinding.FragmentDetailsBinding
+import com.example.finalcapstone_nomapp.databinding.FragmentDetailsFavoriteBinding
 import com.example.finalcapstone_nomapp.model.FavoriteModel
 import com.example.finalcapstone_nomapp.model.Result
-import com.squareup.picasso.Picasso
-import kotlin.NumberFormatException
+
+class DetailsFavoriteFragment : Fragment() {
 
 
-class DetailsFragment : Fragment() {
-
-      private lateinit var binding : FragmentDetailsBinding
-      private val recipesViewModel : RecipesViewModel by activityViewModels()
+    private lateinit var binding : FragmentDetailsFavoriteBinding
+    private val recipesViewModel : RecipesViewModel by activityViewModels()
     private val favoriteRecipesViewModel : FavoriteRecipesViewModel by activityViewModels()
     lateinit var favoriteItem : Result
     lateinit var favoriteItemDetails : FavoriteModel
 
 
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-
-       binding = FragmentDetailsBinding.inflate(layoutInflater, container, false)
+    ): View? {
+        binding = FragmentDetailsFavoriteBinding.inflate(layoutInflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,23 +44,15 @@ class DetailsFragment : Fragment() {
         favoriteObserver()
         favoriteRecipesViewModel.callFavoriteRecipes()
 
-
-        binding.addImageView.setOnClickListener(){
-
-         favoriteRecipesViewModel.addFavoriteRecipe(favoriteItem,"")
-
-            findNavController().navigate(R.id.action_detailsFragment_to_FavoriteFragment)
-             // if condition>> when press the icon color will  change
-            if (binding.addImageView.isPressed){
-               binding.addImageView.setImageResource(R.drawable.addimageviewblack)
-            }
-        }
         // press the image to navigate to the recipe url
         binding.recipeDetailsImageView2.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(favoriteItem.sourceUrl))
             startActivity(intent)
         }
+
     }
+
+
 
     @SuppressLint("ResourceAsColor")
     fun observers(){
@@ -120,12 +102,12 @@ class DetailsFragment : Fragment() {
                     }
                 }
 
-                }
+            }
             recipesViewModel.selectedRecipeMutabileLiveData.postValue(null)
 
         })
-        }
-  //========================================================================================//
+    }
+    //========================================================================================//
 
     @SuppressLint("ResourceAsColor")
     fun favoriteObserver(){

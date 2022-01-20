@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     // global variables for notification
-
     private val CHANNEL_ID = "channel_id_example_01"
    private val notification = 101
 
@@ -78,7 +77,6 @@ class MainActivity : AppCompatActivity() {
              // Set the intent that will fire when the user taps the notification
              .setContentIntent(pendingIntent)
              .setAutoCancel(true)
-
           with(NotificationManagerCompat.from(this)){
               notify(notification, builder.build())
           }

@@ -20,23 +20,11 @@ class RecipesViewModel : ViewModel() {
 
     private val apiRepo = ApiRepository.get()
 
-    private lateinit var recipesAdapter : RecipesAdapter
-
-
     // livedata
     val recipesLiveData = MutableLiveData<List<Result>>()
     val recipesErrorLiveData = MutableLiveData<String>()
     // ماحط ليست ريسلت لان نبي وصفه وحده ولكل وصفه اشياء معينه تظهر لنا عكس اول اكثر من وصفه يعني نحط ليست
     var selectedRecipeMutabileLiveData = MutableLiveData<Result>()
-
-//    var likes = "
-//    var id = ""
-//    var image = ""
-//    var ready = 0
-//    var description = ""
-//    var title = ""
-//    var vegan = true
-
 
     //=========================================================//
     fun callRecipes(){

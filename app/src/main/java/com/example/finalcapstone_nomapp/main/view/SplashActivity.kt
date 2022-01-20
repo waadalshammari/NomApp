@@ -75,7 +75,8 @@ class SplashActivity : AppCompatActivity() {
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
 
                 sharedPref = getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
-
+                // when user login successfully keep the user login then navigate to
+                //main Activity >> recipes Fragment
                 if (sharedPref.getBoolean("state", false)) {
 
                     val intent = Intent(this@SplashActivity,MainActivity::class.java)
@@ -83,7 +84,7 @@ class SplashActivity : AppCompatActivity() {
                     finish()
 
                 } else{
-
+                 // user does not login or register then navigate to FirstActivity
                     val intent = Intent(this@SplashActivity, FirstActivity::class.java)
                     startActivity(intent)
                     finish()

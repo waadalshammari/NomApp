@@ -46,7 +46,7 @@ class SignUpActivity : AppCompatActivity() {
                             task ->
                         if (task.isSuccessful){
                             val firebaseUser : FirebaseUser = task.result!!.user!!
-                            Toast.makeText(this,"User Registered Successfully", Toast.LENGTH_SHORT)
+                            Toast.makeText(this,"You Registered Successfully", Toast.LENGTH_SHORT)
                                 .show()
                             // Navigate to main Activity
                             val intent = Intent(this,MainActivity::class.java)
