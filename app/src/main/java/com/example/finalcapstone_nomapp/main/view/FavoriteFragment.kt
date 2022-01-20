@@ -23,8 +23,6 @@ class FavoriteFragment : Fragment() {
     private lateinit var favoriteAdapter : FavoriteRecipeAdapter
     private val favoriteViewModel : FavoriteRecipesViewModel by activityViewModels()
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,8 +33,6 @@ class FavoriteFragment : Fragment() {
         binding.favoriteNoDataTextView
 
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
