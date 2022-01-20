@@ -39,15 +39,16 @@ link to Figma [Figma Wireframe](https://www.figma.com/file/Q91sullzZ7KMApxlt370z
 
 - As a user I want to have the recipes url so that I can see more information and details about the recipes.
 
--As a user I want to deltet any recipe so that I can make sure that I cooked this recipe or I dont need it any more.
+- As a user I want to deltet any recipe so that I can make sure that I cooked this recipe or I dont need it any more.
 
--As a user I want to edit any recipe I add it before so that I can remmember my note when I use the app.
+- As a user I want to edit any recipe I add it before so that I can remmember my note when I use the app.
 
 
 -------------------------------------------------------------------------
+ ## List of the depencenceies used in the project:
 
  ```
- 4. List of the depencenceies used in the project:
+
  
    *  for motion layout:
  ```kotlin
@@ -149,9 +150,13 @@ development process :
 
   
 *Searched: for different apps and what is the basic features in every app
+
 *wrote : wrote down the features I wont for my apps and searched in different website for the code to understand what I will do when I start my coding.
+
 *designed : designed my app in Figma then In Android Studio.
+
 *wrote the code : created packages for database,adapter,viewmodel,fragments and splash .
+
 *run the app : tried to run the app and solved the errors.
 
 
