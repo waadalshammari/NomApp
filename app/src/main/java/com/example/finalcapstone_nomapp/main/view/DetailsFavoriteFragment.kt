@@ -18,8 +18,6 @@ import com.example.finalcapstone_nomapp.model.FavoriteModel
 import com.example.finalcapstone_nomapp.model.Result
 
 class DetailsFavoriteFragment : Fragment() {
-
-
     private lateinit var binding : FragmentDetailsFavoriteBinding
     private val recipesViewModel : RecipesViewModel by activityViewModels()
     private val favoriteRecipesViewModel : FavoriteRecipesViewModel by activityViewModels()

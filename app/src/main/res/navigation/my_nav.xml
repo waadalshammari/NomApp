@@ -44,6 +44,6 @@
     <fragment
         android:id="@+id/detailsFavoriteFragment"
         android:name="com.example.finalcapstone_nomapp.main.view.DetailsFavoriteFragment"
-        android:label="fragment_details_favorite"
+        android:label="Recipe Details"
         tools:layout="@layout/fragment_details_favorite" />
 </navigation>

@@ -14,6 +14,7 @@ import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.databinding.FragmentFavoriteBinding
 import com.example.finalcapstone_nomapp.main.adapters.FavoriteRecipeAdapter
 import com.example.finalcapstone_nomapp.util.SwipeToDeleteCallback
+import com.google.firebase.auth.FirebaseAuth
 
 
 class FavoriteFragment : Fragment() {
@@ -21,6 +22,7 @@ class FavoriteFragment : Fragment() {
     private lateinit var binding : FragmentFavoriteBinding
     private lateinit var favoriteAdapter : FavoriteRecipeAdapter
     private val favoriteViewModel : FavoriteRecipesViewModel by activityViewModels()
+
 
 
     override fun onCreateView(
@@ -58,16 +60,17 @@ class FavoriteFragment : Fragment() {
 
         observers()
         favoriteViewModel.callFavoriteRecipes()
-
-
-
     }
-
-
     fun observers(){
         favoriteViewModel.favoriteRecipesLiveData.observe(viewLifecycleOwner,{
                 favoriteAdapter.submitList(it)
 
+           val filterList = it.filter {
+               it.userid == FirebaseAuth.getInstance().uid
+           }
+            favoriteAdapter.submitList(filterList)
+
+          //==============================================================//
 
             if (it.isNotEmpty()) {
                 binding.favoriteNoDataImageView.isVisible = false

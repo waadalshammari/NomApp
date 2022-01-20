@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.finalcapstone_nomapp.R
 import com.example.finalcapstone_nomapp.main.view.MainActivity
+import com.example.finalcapstone_nomapp.main.view.STATE
+import com.example.finalcapstone_nomapp.main.view.USERID
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -46,8 +48,12 @@ class SignUpActivity : AppCompatActivity() {
                             task ->
                         if (task.isSuccessful){
                             val firebaseUser : FirebaseUser = task.result!!.user!!
-                            Toast.makeText(this,"You Registered Successfully", Toast.LENGTH_SHORT)
+                            Toast.makeText(this,"You SignUp Successfully", Toast.LENGTH_SHORT)
                                 .show()
+                            sharedEditor = sharedPref.edit()
+                            sharedEditor.putBoolean(STATE,true)
+                            sharedEditor.putString(USERID,FirebaseAuth.getInstance().currentUser!!.uid)
+                            sharedEditor.commit()
                             // Navigate to main Activity
                             val intent = Intent(this,MainActivity::class.java)
                             intent.putExtra("UserId", firebaseUser.uid)
