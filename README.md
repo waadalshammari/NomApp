@@ -4,7 +4,9 @@ Tuwaiq Academy Second Project.
 NOM Android Application
 
 ## LOGO and OVERVIEW:
-![Yellow and Black Fun Modern Restaurant Food Logo](https://user-images.githubusercontent.com/91456619/150308877-bfd3fa1f-d180-4f5f-8462-a3e50e2ad833.png)
+![Yellow and Black Fun Modern Restaurant Food Logo (1)](https://user-images.githubusercontent.com/91456619/150314884-7b972bd5-7b5a-45fa-a04e-263e84472399.png)
+
+
 This project represents an android application NOM, which helps the user display different food recipes.
 
 ## Technologies used:
@@ -132,4 +134,8 @@ link to Figma [Figma Wireframe](https://www.figma.com/file/Q91sullzZ7KMApxlt370z
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
    }
 ```
+
+-----------------------------------------------------------------
+
+
 
