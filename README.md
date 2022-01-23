@@ -19,7 +19,7 @@ This application was built using the following technologies:
 * Canva
 
 ### For Programming the app:
-* Android Architecture Components:Room,LiveData,ViewModel and Data binding.
+* Android Architecture Components:,LiveData,ViewModel and Data binding.
 * RecyclerViews & Adapters.
 * Required Libraries
 * Figma
