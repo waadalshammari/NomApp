@@ -8,7 +8,7 @@ NOM Android Application
 ![Yellow and Black Fun Modern Restaurant Food Logo (1)](https://user-images.githubusercontent.com/91456619/150314884-7b972bd5-7b5a-45fa-a04e-263e84472399.png)
 
 
-This project represents an android application NOM, which helps the user display different food recipes.
+I named this project Nom, which helps the user display different food recipes.
 
 ## Technologies used:
 This application was built using the following technologies:
