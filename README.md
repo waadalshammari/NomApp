@@ -37,8 +37,6 @@ link to Figma [Figma Wireframe](https://www.figma.com/file/Q91sullzZ7KMApxlt370z
 
 - As a user I want to see the details of each recipes so that I can see additional information about it  .
 
-- As a user I want to have the recipes url so that I can see more information and details about the recipes.
-
 - As a user I want to deltet any recipe so that I can make sure that I cooked this recipe or I dont need it any more.
 
 - As a user I want to edit any recipe I add it before so that I can remmember my note when I use the app.
