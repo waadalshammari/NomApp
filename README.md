@@ -166,9 +166,9 @@ Searched in different website like developer android,youtube,stackoverflow and m
 
 ## Unsolved Problems which would be fixed in future iterations:
 
-* some minor issues regarding the enhancment of the design to make the user expereince more dynamic.
 * send notification to notifiy the user that it's time to cook on a specific time based on what the user write in the note.
 * filter 
+* add comments
  ____________________________________________________________________________________________________________________________________________________________
 
 
